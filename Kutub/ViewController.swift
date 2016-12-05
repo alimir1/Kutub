@@ -13,13 +13,14 @@ class ViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        
     }
     
     override func viewDidAppear(_ animated: Bool) {
         super.viewDidAppear(animated)
         
         let config = FolioReaderConfig()
-        let bookPath = Bundle.main.path(forResource: "AshuraMisconceptions", ofType: "epub")
+        let bookPath = Bundle.main.path(forResource: "Jafar al-Tayyar", ofType: "epub")
         let epubVC = FolioReaderContainer(withConfig: config, epubPath: bookPath!, removeEpub: false)
         
         // Present the epubVC view controller like every other UIViewController instance

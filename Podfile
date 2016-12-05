@@ -3,4 +3,5 @@ use_frameworks!
 
 target 'Kutub' do
     pod 'FolioReaderKit', '~> 1.0.0'
+    pod 'RealmSwift'
 end
