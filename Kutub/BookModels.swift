@@ -17,8 +17,10 @@ class Book {
     let description: String?
     let featuredCategories: [FeaturedCategory]?
     let miscellaneousInformation: String?
+    let uniqueKey: String
     
-    init(authors: [Author]? = nil, categories: [BookCategory]? = nil, publishers: [Publisher]? = nil, tags: [Tag]? = nil, title: String, description: String? = nil, featuredCategories: [FeaturedCategory]? = nil, miscellaneousInformation: String? = nil) {
+    init(uniqueKey: String, authors: [Author]? = nil, categories: [BookCategory]? = nil, publishers: [Publisher]? = nil, tags: [Tag]? = nil, title: String, description: String? = nil, featuredCategories: [FeaturedCategory]? = nil, miscellaneousInformation: String? = nil) {
+        self.uniqueKey = uniqueKey
         self.authors = authors
         self.categories = categories
         self.publishers = publishers

@@ -8,6 +8,8 @@
 
 /* Begin PBXBuildFile section */
 		4988D0141DEF7B3800AD9535 /* Jafar al-Tayyar.epub in Resources */ = {isa = PBXBuildFile; fileRef = 4988D0131DEF7B3800AD9535 /* Jafar al-Tayyar.epub */; };
+		498E456B1DF5D9690081C9A5 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 498E456A1DF5D9680081C9A5 /* GoogleService-Info.plist */; };
+		498E456D1DF5DE810081C9A5 /* BrowseViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 498E456C1DF5DE810081C9A5 /* BrowseViewController.swift */; };
 		49CD5E1C1DF223B100BAE21F /* MyBooksViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 49CD5E1B1DF223B100BAE21F /* MyBooksViewController.swift */; };
 		49CD5E1F1DF2565F00BAE21F /* BookModels.swift in Sources */ = {isa = PBXBuildFile; fileRef = 49CD5E1E1DF2565F00BAE21F /* BookModels.swift */; };
 		49CD5E211DF25A7000BAE21F /* StateControllers.swift in Sources */ = {isa = PBXBuildFile; fileRef = 49CD5E201DF25A7000BAE21F /* StateControllers.swift */; };
@@ -23,6 +25,8 @@
 /* Begin PBXFileReference section */
 		27952BE55172861F9BE305FA /* Pods_Kutub.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Kutub.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		4988D0131DEF7B3800AD9535 /* Jafar al-Tayyar.epub */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Jafar al-Tayyar.epub"; sourceTree = "<group>"; };
+		498E456A1DF5D9680081C9A5 /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
+		498E456C1DF5DE810081C9A5 /* BrowseViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BrowseViewController.swift; sourceTree = "<group>"; };
 		49CD5E1B1DF223B100BAE21F /* MyBooksViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MyBooksViewController.swift; sourceTree = "<group>"; };
 		49CD5E1E1DF2565F00BAE21F /* BookModels.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BookModels.swift; sourceTree = "<group>"; };
 		49CD5E201DF25A7000BAE21F /* StateControllers.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = StateControllers.swift; sourceTree = "<group>"; };
@@ -94,9 +98,11 @@
 				4988D0131DEF7B3800AD9535 /* Jafar al-Tayyar.epub */,
 				49FD45591DE39E3E007895A2 /* AppDelegate.swift */,
 				49CD5E1B1DF223B100BAE21F /* MyBooksViewController.swift */,
+				498E456C1DF5DE810081C9A5 /* BrowseViewController.swift */,
 				49FD455D1DE39E3E007895A2 /* Main.storyboard */,
 				49FD45601DE39E3E007895A2 /* Assets.xcassets */,
 				49FD45621DE39E3E007895A2 /* LaunchScreen.storyboard */,
+				498E456A1DF5D9680081C9A5 /* GoogleService-Info.plist */,
 				49FD45651DE39E3E007895A2 /* Info.plist */,
 			);
 			path = Kutub;
@@ -141,7 +147,7 @@
 			isa = PBXProject;
 			attributes = {
 				LastSwiftUpdateCheck = 0800;
-				LastUpgradeCheck = 0800;
+				LastUpgradeCheck = 0810;
 				ORGANIZATIONNAME = com.AliMir;
 				TargetAttributes = {
 					49FD45551DE39E3E007895A2 = {
@@ -180,6 +186,7 @@
 				49FD456C1DE3A44D007895A2 /* AshuraMisconceptions.epub in Resources */,
 				49FD455F1DE39E3E007895A2 /* Main.storyboard in Resources */,
 				4988D0141DEF7B3800AD9535 /* Jafar al-Tayyar.epub in Resources */,
+				498E456B1DF5D9690081C9A5 /* GoogleService-Info.plist in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -242,6 +249,7 @@
 				49FD455A1DE39E3E007895A2 /* AppDelegate.swift in Sources */,
 				49CD5E1C1DF223B100BAE21F /* MyBooksViewController.swift in Sources */,
 				49CD5E1F1DF2565F00BAE21F /* BookModels.swift in Sources */,
+				498E456D1DF5DE810081C9A5 /* BrowseViewController.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -285,6 +293,7 @@
 				CLANG_WARN_INFINITE_RECURSION = YES;
 				CLANG_WARN_INT_CONVERSION = YES;
 				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
 				CLANG_WARN_SUSPICIOUS_MOVES = YES;
 				CLANG_WARN_UNREACHABLE_CODE = YES;
 				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
@@ -335,6 +344,7 @@
 				CLANG_WARN_INFINITE_RECURSION = YES;
 				CLANG_WARN_INT_CONVERSION = YES;
 				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
 				CLANG_WARN_SUSPICIOUS_MOVES = YES;
 				CLANG_WARN_UNREACHABLE_CODE = YES;
 				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
@@ -364,6 +374,7 @@
 			isa = XCBuildConfiguration;
 			baseConfigurationReference = 8E09189A17B1943AC2058731 /* Pods-Kutub.debug.xcconfig */;
 			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				DEVELOPMENT_TEAM = 396S2E45WK;
 				INFOPLIST_FILE = Kutub/Info.plist;
@@ -378,6 +389,7 @@
 			isa = XCBuildConfiguration;
 			baseConfigurationReference = 90B6E4AA037A4279FF87982D /* Pods-Kutub.release.xcconfig */;
 			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				DEVELOPMENT_TEAM = 396S2E45WK;
 				INFOPLIST_FILE = Kutub/Info.plist;
