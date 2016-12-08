@@ -72,6 +72,26 @@
 			name = Frameworks;
 			sourceTree = "<group>";
 		};
+		496950991DFA17A700CA66B6 /* Browse */ = {
+			isa = PBXGroup;
+			children = (
+				498E456C1DF5DE810081C9A5 /* BrowseViewController.swift */,
+				49057F291DF9056E0058818B /* BrowseCell.swift */,
+				49057F2B1DF911310058818B /* BrowseCollectionCell.swift */,
+				4969509A1DFA183700CA66B6 /* Banner */,
+			);
+			name = Browse;
+			sourceTree = "<group>";
+		};
+		4969509A1DFA183700CA66B6 /* Banner */ = {
+			isa = PBXGroup;
+			children = (
+				4959C2811DF9CEEA00E8CB0D /* BannerPageViewController.swift */,
+				4959C2831DF9D03200E8CB0D /* BannerItemController.swift */,
+			);
+			name = Banner;
+			sourceTree = "<group>";
+		};
 		49CD5E1D1DF2564F00BAE21F /* Models */ = {
 			isa = PBXGroup;
 			children = (
@@ -108,11 +128,7 @@
 				4988D0131DEF7B3800AD9535 /* Jafar al-Tayyar.epub */,
 				49FD45591DE39E3E007895A2 /* AppDelegate.swift */,
 				49CD5E1B1DF223B100BAE21F /* MyBooksViewController.swift */,
-				498E456C1DF5DE810081C9A5 /* BrowseViewController.swift */,
-				49057F2B1DF911310058818B /* BrowseCollectionCell.swift */,
-				49057F291DF9056E0058818B /* BrowseCell.swift */,
-				4959C2811DF9CEEA00E8CB0D /* BannerPageViewController.swift */,
-				4959C2831DF9D03200E8CB0D /* BannerItemController.swift */,
+				496950991DFA17A700CA66B6 /* Browse */,
 				49FD455D1DE39E3E007895A2 /* Main.storyboard */,
 				49057F271DF904270058818B /* TestingAround.swift */,
 				49FD45601DE39E3E007895A2 /* Assets.xcassets */,

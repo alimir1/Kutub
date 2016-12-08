@@ -11,7 +11,8 @@ import UIKit
 class BrowseCell: UITableViewCell {
     
     @IBOutlet private weak var collectionView: UICollectionView!
-
+    @IBOutlet weak var featuredCategoryName: UIButton!
+    
     override func awakeFromNib() {
         super.awakeFromNib()
         // Initialization code
@@ -25,6 +26,11 @@ class BrowseCell: UITableViewCell {
         set {
             collectionView.contentOffset.x = newValue
         }
+    }
+    
+    func setFeaturedCategoryTitle(name: String) {
+        let titleAttributedString = NSAttributedString(string: "\(name) >")
+        featuredCategoryName.setAttributedTitle(titleAttributedString, for: .normal)
     }
 
     func setCollectionViewDataSourceDelegate <D: UICollectionViewDelegate, S: UICollectionViewDataSource>(dataDelegate: D, dataSource: S, forRow row: Int) {
