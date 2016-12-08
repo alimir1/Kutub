@@ -32,6 +32,11 @@
                                         <segue destination="1XS-Wd-36U" kind="embed" id="6a9-rC-ley"/>
                                     </connections>
                                 </containerView>
+                                <view key="tableFooterView" contentMode="scaleToFill" id="6JB-ze-IEf">
+                                    <rect key="frame" x="0.0" y="321" width="375" height="0.0"/>
+                                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                    <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                </view>
                                 <prototypes>
                                     <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="blue" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" reuseIdentifier="browseCell" id="oaa-Uf-whV" customClass="BrowseCell" customModule="Kutub" customModuleProvider="target">
                                         <rect key="frame" x="0.0" y="171" width="375" height="150"/>
@@ -106,9 +111,24 @@
                                                         </collectionViewCell>
                                                     </cells>
                                                 </collectionView>
-                                                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="qKw-fA-Hfr">
+                                                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" hasAttributedTitle="YES" translatesAutoresizingMaskIntoConstraints="NO" id="qKw-fA-Hfr">
                                                     <rect key="frame" x="8" y="8" width="359" height="29"/>
-                                                    <state key="normal" title="Some Featured Category"/>
+                                                    <state key="normal">
+                                                        <attributedString key="attributedTitle">
+                                                            <fragment content="Some Featured Category ">
+                                                                <attributes>
+                                                                    <color key="NSColor" red="0.12265625000000002" green="0.12265625000000002" blue="0.12265625000000002" alpha="1" colorSpace="calibratedRGB"/>
+                                                                    <font key="NSFont" metaFont="system" size="15"/>
+                                                                </attributes>
+                                                            </fragment>
+                                                            <fragment content="&gt;">
+                                                                <attributes>
+                                                                    <color key="NSColor" red="0.41464342948717925" green="0.41464342948717925" blue="0.41464342948717925" alpha="1" colorSpace="calibratedRGB"/>
+                                                                    <font key="NSFont" size="17" name=".AppleSystemUIFont"/>
+                                                                </attributes>
+                                                            </fragment>
+                                                        </attributedString>
+                                                    </state>
                                                 </button>
                                             </subviews>
                                             <constraints>

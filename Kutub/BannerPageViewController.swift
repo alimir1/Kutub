@@ -17,19 +17,18 @@ class BannerPageViewController: UIPageViewController {
                 self.getBannerItemVC(image: #imageLiteral(resourceName: "howzah"))]
     }()
     
+    private var timer = Timer()
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         dataSource = self
-        
+
         if let firstViewController = orderedViewControllers.first {
             setViewControllers([firstViewController],
                                direction: .forward,
                                animated: true,
                                completion: nil)
         }
-        
-        let klsd = orderedViewControllers.first
-        
     }
     
     private func getBannerItemVC(image: UIImage) -> UIViewController {
