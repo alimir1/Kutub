@@ -7,56 +7,42 @@
 //
 
 import Foundation
+import RealmSwift
 
-class Book {
-    let authors: [Author]?
-    let categories: [BookCategory]?
-    let publishers: [Publisher]?
-    let tags: [Tag]?
+protocol BookMetadata {
+    var title: String {get}
+    var bookDescription: String {get}
+    var miscellaneousInformation: String {get}
+    var uniqueKey: String {get}
+}
+
+struct BrowsingBook: BookMetadata {
     let title: String
-    let description: String?
-    let featuredCategories: [FeaturedCategory]?
-    let miscellaneousInformation: String?
+    let bookDescription: String
+    let miscellaneousInformation: String
     let uniqueKey: String
-    
-    init(uniqueKey: String, authors: [Author]? = nil, categories: [BookCategory]? = nil, publishers: [Publisher]? = nil, tags: [Tag]? = nil, title: String, description: String? = nil, featuredCategories: [FeaturedCategory]? = nil, miscellaneousInformation: String? = nil) {
-        self.uniqueKey = uniqueKey
-        self.authors = authors
-        self.categories = categories
-        self.publishers = publishers
-        self.tags = tags
-        self.title = title
-        self.description = description
-        self.featuredCategories = featuredCategories
-        self.miscellaneousInformation = miscellaneousInformation
-    }
+    let authors: [Info]
+    let publishers: [Info]
+    let tags: [Info]
+    let translators: [Info]
+    let featuredCategories: [Info]
 }
 
 struct Info {
     let name: String
-    let books: [Book]? = nil
+    let uniqueKey: String
 }
 
-struct Author {
-    let info: Info
-}
-
-struct BookCategory {
-    let info: Info
-}
-
-struct Publisher {
-    let info: Info
-}
-
-struct Tag {
-    let info: Info
-}
-
-struct Translator {
-    let info: Info
-}
-
-struct FeaturedCategory {
-    let info: Info
+class DownloadedBook: Object, BookMetadata {
+    dynamic var title = ""
+    dynamic var bookDescription = ""
+    dynamic var miscellaneousInformation = ""
+    dynamic var uniqueKey = ""
+    dynamic var ebookPath = ""
+    dynamic var authors = ""
+    dynamic var translators = ""
+    dynamic var publishers = ""
+    dynamic var dateDownloaded = Date()
+    
+    override class func primaryKey() -> String? { return "uniqueKey" }
 }

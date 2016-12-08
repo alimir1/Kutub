@@ -9,7 +9,7 @@
 import UIKit
 
 class MyBooksViewController: UIViewController {
-
+    let books = BooksStateController.shared
     override func viewDidLoad() {
         super.viewDidLoad()
     }

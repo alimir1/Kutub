@@ -7,12 +7,15 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		49057F281DF904270058818B /* TestingAround.swift in Sources */ = {isa = PBXBuildFile; fileRef = 49057F271DF904270058818B /* TestingAround.swift */; };
+		49057F2A1DF9056E0058818B /* BrowseCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 49057F291DF9056E0058818B /* BrowseCell.swift */; };
+		49057F2C1DF911310058818B /* BrowseCollectionCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 49057F2B1DF911310058818B /* BrowseCollectionCell.swift */; };
 		4988D0141DEF7B3800AD9535 /* Jafar al-Tayyar.epub in Resources */ = {isa = PBXBuildFile; fileRef = 4988D0131DEF7B3800AD9535 /* Jafar al-Tayyar.epub */; };
 		498E456B1DF5D9690081C9A5 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 498E456A1DF5D9680081C9A5 /* GoogleService-Info.plist */; };
 		498E456D1DF5DE810081C9A5 /* BrowseViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 498E456C1DF5DE810081C9A5 /* BrowseViewController.swift */; };
 		49CD5E1C1DF223B100BAE21F /* MyBooksViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 49CD5E1B1DF223B100BAE21F /* MyBooksViewController.swift */; };
 		49CD5E1F1DF2565F00BAE21F /* BookModels.swift in Sources */ = {isa = PBXBuildFile; fileRef = 49CD5E1E1DF2565F00BAE21F /* BookModels.swift */; };
-		49CD5E211DF25A7000BAE21F /* StateControllers.swift in Sources */ = {isa = PBXBuildFile; fileRef = 49CD5E201DF25A7000BAE21F /* StateControllers.swift */; };
+		49CD5E211DF25A7000BAE21F /* BooksStateController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 49CD5E201DF25A7000BAE21F /* BooksStateController.swift */; };
 		49E4E6701DE915E600816857 /* A Shi'ite Anthology.epub in Resources */ = {isa = PBXBuildFile; fileRef = 49E4E66F1DE915E600816857 /* A Shi'ite Anthology.epub */; };
 		49FD455A1DE39E3E007895A2 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 49FD45591DE39E3E007895A2 /* AppDelegate.swift */; };
 		49FD455F1DE39E3E007895A2 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 49FD455D1DE39E3E007895A2 /* Main.storyboard */; };
@@ -24,12 +27,15 @@
 
 /* Begin PBXFileReference section */
 		27952BE55172861F9BE305FA /* Pods_Kutub.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Kutub.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		49057F271DF904270058818B /* TestingAround.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TestingAround.swift; sourceTree = "<group>"; };
+		49057F291DF9056E0058818B /* BrowseCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BrowseCell.swift; sourceTree = "<group>"; };
+		49057F2B1DF911310058818B /* BrowseCollectionCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BrowseCollectionCell.swift; sourceTree = "<group>"; };
 		4988D0131DEF7B3800AD9535 /* Jafar al-Tayyar.epub */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Jafar al-Tayyar.epub"; sourceTree = "<group>"; };
 		498E456A1DF5D9680081C9A5 /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
 		498E456C1DF5DE810081C9A5 /* BrowseViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BrowseViewController.swift; sourceTree = "<group>"; };
 		49CD5E1B1DF223B100BAE21F /* MyBooksViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MyBooksViewController.swift; sourceTree = "<group>"; };
 		49CD5E1E1DF2565F00BAE21F /* BookModels.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BookModels.swift; sourceTree = "<group>"; };
-		49CD5E201DF25A7000BAE21F /* StateControllers.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = StateControllers.swift; sourceTree = "<group>"; };
+		49CD5E201DF25A7000BAE21F /* BooksStateController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BooksStateController.swift; sourceTree = "<group>"; };
 		49E4E66F1DE915E600816857 /* A Shi'ite Anthology.epub */ = {isa = PBXFileReference; lastKnownFileType = file; path = "A Shi'ite Anthology.epub"; sourceTree = "<group>"; };
 		49FD45561DE39E3E007895A2 /* Kutub.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Kutub.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		49FD45591DE39E3E007895A2 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
@@ -65,8 +71,8 @@
 		49CD5E1D1DF2564F00BAE21F /* Models */ = {
 			isa = PBXGroup;
 			children = (
+				49CD5E201DF25A7000BAE21F /* BooksStateController.swift */,
 				49CD5E1E1DF2565F00BAE21F /* BookModels.swift */,
-				49CD5E201DF25A7000BAE21F /* StateControllers.swift */,
 			);
 			name = Models;
 			sourceTree = "<group>";
@@ -99,7 +105,10 @@
 				49FD45591DE39E3E007895A2 /* AppDelegate.swift */,
 				49CD5E1B1DF223B100BAE21F /* MyBooksViewController.swift */,
 				498E456C1DF5DE810081C9A5 /* BrowseViewController.swift */,
+				49057F2B1DF911310058818B /* BrowseCollectionCell.swift */,
+				49057F291DF9056E0058818B /* BrowseCell.swift */,
 				49FD455D1DE39E3E007895A2 /* Main.storyboard */,
+				49057F271DF904270058818B /* TestingAround.swift */,
 				49FD45601DE39E3E007895A2 /* Assets.xcassets */,
 				49FD45621DE39E3E007895A2 /* LaunchScreen.storyboard */,
 				498E456A1DF5D9680081C9A5 /* GoogleService-Info.plist */,
@@ -245,9 +254,12 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				49CD5E211DF25A7000BAE21F /* StateControllers.swift in Sources */,
+				49CD5E211DF25A7000BAE21F /* BooksStateController.swift in Sources */,
 				49FD455A1DE39E3E007895A2 /* AppDelegate.swift in Sources */,
+				49057F2A1DF9056E0058818B /* BrowseCell.swift in Sources */,
+				49057F2C1DF911310058818B /* BrowseCollectionCell.swift in Sources */,
 				49CD5E1C1DF223B100BAE21F /* MyBooksViewController.swift in Sources */,
+				49057F281DF904270058818B /* TestingAround.swift in Sources */,
 				49CD5E1F1DF2565F00BAE21F /* BookModels.swift in Sources */,
 				498E456D1DF5DE810081C9A5 /* BrowseViewController.swift in Sources */,
 			);
