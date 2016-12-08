@@ -26,7 +26,7 @@
                                 <rect key="frame" x="0.0" y="64" width="375" height="603"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                 <containerView key="tableHeaderView" opaque="NO" contentMode="scaleToFill" id="V01-Wo-pcM">
-                                    <rect key="frame" x="0.0" y="0.0" width="375" height="112"/>
+                                    <rect key="frame" x="0.0" y="0.0" width="375" height="143"/>
                                     <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMinY="YES"/>
                                     <connections>
                                         <segue destination="1XS-Wd-36U" kind="embed" id="6a9-rC-ley"/>
@@ -34,7 +34,7 @@
                                 </containerView>
                                 <prototypes>
                                     <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="blue" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" reuseIdentifier="browseCell" id="oaa-Uf-whV" customClass="BrowseCell" customModule="Kutub" customModuleProvider="target">
-                                        <rect key="frame" x="0.0" y="140" width="375" height="150"/>
+                                        <rect key="frame" x="0.0" y="171" width="375" height="150"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="oaa-Uf-whV" id="E4z-4X-FOI">
                                             <rect key="frame" x="0.0" y="0.0" width="375" height="149"/>
@@ -200,11 +200,11 @@
                         <viewControllerLayoutGuide type="bottom" id="B9b-84-asR"/>
                     </layoutGuides>
                     <view key="view" contentMode="scaleToFill" id="Nah-La-mkt">
-                        <rect key="frame" x="0.0" y="0.0" width="375" height="112"/>
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="143"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="vyY-YV-SAf">
-                                <rect key="frame" x="0.0" y="0.0" width="375" height="112"/>
+                                <rect key="frame" x="0.0" y="0.0" width="375" height="143"/>
                             </button>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
@@ -216,7 +216,7 @@
                         </constraints>
                     </view>
                     <freeformSimulatedSizeMetrics key="simulatedDestinationMetrics"/>
-                    <size key="freeformSize" width="375" height="112"/>
+                    <size key="freeformSize" width="375" height="143"/>
                     <connections>
                         <outlet property="buttonImage" destination="vyY-YV-SAf" id="SbT-nx-nh8"/>
                     </connections>

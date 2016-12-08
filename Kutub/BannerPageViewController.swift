@@ -13,7 +13,8 @@ class BannerPageViewController: UIPageViewController {
     private(set) lazy var orderedViewControllers: [UIViewController] = {
         return [self.getBannerItemVC(image: #imageLiteral(resourceName: "ayatollahMutahhari")),
                 self.getBannerItemVC(image: #imageLiteral(resourceName: "Ayatollah_tabatabai")),
-                self.getBannerItemVC(image: #imageLiteral(resourceName: "sunrisePraying"))]
+                self.getBannerItemVC(image: #imageLiteral(resourceName: "sunrisePraying")),
+                self.getBannerItemVC(image: #imageLiteral(resourceName: "howzah"))]
     }()
     
     override func viewDidLoad() {
