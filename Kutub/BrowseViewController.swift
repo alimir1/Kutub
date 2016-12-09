@@ -28,7 +28,7 @@ class BrowseViewController: UIViewController {
     func getDataFromFirebase() {
         let ref = FIRDatabase.database().reference()
         // TODO: - DON'T FORGET TO REMOVE OBSERVERS ONCE YOU'RE DONE!!!
-        ref.child("FeaturedBooksCategories").observe(.value, with: {
+        ref.child("FeaturedBooksCategories").observeSingleEvent(of: .value, with: {
             (featuredBooks) in
             for (featuredCategoryIndex, featuredBook) in ((featuredBooks.children.allObjects as! [FIRDataSnapshot])).enumerated() {
                 let featuredTitle = featuredBook.key
