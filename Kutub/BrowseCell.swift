@@ -29,8 +29,7 @@ class BrowseCell: UITableViewCell {
     }
     
     func setFeaturedCategoryTitle(name: String) {
-        let titleAttributedString = NSAttributedString(string: "\(name) >")
-        featuredCategoryName.setAttributedTitle(titleAttributedString, for: .normal)
+        featuredCategoryName.setTitle(name + " >", for: .normal)
     }
 
     func setCollectionViewDataSourceDelegate <D: UICollectionViewDelegate, S: UICollectionViewDataSource>(dataDelegate: D, dataSource: S, forRow row: Int) {

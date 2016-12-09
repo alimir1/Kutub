@@ -15,6 +15,7 @@ class BrowseCollectionCell: UICollectionViewCell {
     
     func configureCell(title: String, author: String, imageCover: UIImage? = nil) {
         if let image = imageCover {
+            bookCover.imageView?.contentMode = .scaleAspectFit
             configureLabelsUI(isContainsImage: true)
             bookCover.setImage(image, for: .normal)
         } else {

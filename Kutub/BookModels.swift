@@ -11,32 +11,42 @@ import RealmSwift
 
 protocol BookMetadata {
     var title: String {get}
-    var bookDescription: String {get}
-    var miscellaneousInformation: String {get}
+    var bookDescription: String? {get}
+    var miscellaneousInformation: String? {get}
     var uniqueKey: String {get}
+}
+
+enum BookInfos: String {
+    case title, description
 }
 
 struct BrowsingBook: BookMetadata {
     let title: String
-    let bookDescription: String
-    let miscellaneousInformation: String
+    let bookDescription: String?
+    let miscellaneousInformation: String?
     let uniqueKey: String
-    let authors: [Info]
-    let publishers: [Info]
-    let tags: [Info]
-    let translators: [Info]
-    let featuredCategories: [Info]
+    let authors: [String]?
+    let publishers: [String]?
+    let tags: [String]?
+    let translators: [String]?
+    let featuredCategories: [String]?
+    
+    init(title: String, bookDescription: String? = nil, miscellaneousInformation: String? = nil, uniqueKey: String, authors: [String]? = nil, publishers: [String]? = nil, tags: [String]? = nil, translators: [String]? = nil, featuredCategories: [String]? = nil) {
+        self.title = title
+        self.bookDescription = bookDescription
+        self.miscellaneousInformation = miscellaneousInformation
+        self.uniqueKey = uniqueKey
+        self.authors = authors
+        self.publishers = publishers
+        self.tags = tags
+        self.translators = translators
+        self.featuredCategories = featuredCategories
+    }
 }
-
-struct Info {
-    let name: String
-    let uniqueKey: String
-}
-
 class DownloadedBook: Object, BookMetadata {
-    dynamic var title = ""
-    dynamic var bookDescription = ""
-    dynamic var miscellaneousInformation = ""
+    dynamic var title: String = ""
+    dynamic var bookDescription: String? = ""
+    dynamic var miscellaneousInformation: String? = ""
     dynamic var uniqueKey = ""
     dynamic var ebookPath = ""
     dynamic var authors = ""

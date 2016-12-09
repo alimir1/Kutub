@@ -25,7 +25,7 @@
                             <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" allowsSelection="NO" rowHeight="185" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="CB5-z1-vUE">
                                 <rect key="frame" x="0.0" y="64" width="375" height="603"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                                <containerView key="tableHeaderView" opaque="NO" contentMode="scaleAspectFill" id="V01-Wo-pcM">
+                                <containerView key="tableHeaderView" opaque="NO" contentMode="scaleToFill" id="V01-Wo-pcM">
                                     <rect key="frame" x="0.0" y="0.0" width="375" height="143"/>
                                     <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMinY="YES"/>
                                     <connections>
@@ -45,26 +45,14 @@
                                             <rect key="frame" x="0.0" y="0.0" width="375" height="184"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
-                                                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" hasAttributedTitle="YES" translatesAutoresizingMaskIntoConstraints="NO" id="qKw-fA-Hfr">
+                                                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="qKw-fA-Hfr">
                                                     <rect key="frame" x="8" y="8" width="359" height="33"/>
                                                     <constraints>
                                                         <constraint firstAttribute="height" constant="33" id="c1l-Og-FoZ"/>
                                                     </constraints>
-                                                    <state key="normal">
-                                                        <attributedString key="attributedTitle">
-                                                            <fragment content="Some Featured Category ">
-                                                                <attributes>
-                                                                    <color key="NSColor" red="0.12265625000000002" green="0.12265625000000002" blue="0.12265625000000002" alpha="1" colorSpace="calibratedRGB"/>
-                                                                    <font key="NSFont" metaFont="system" size="15"/>
-                                                                </attributes>
-                                                            </fragment>
-                                                            <fragment content="&gt;">
-                                                                <attributes>
-                                                                    <color key="NSColor" red="0.41464342948717925" green="0.41464342948717925" blue="0.41464342948717925" alpha="1" colorSpace="calibratedRGB"/>
-                                                                    <font key="NSFont" size="17" name=".AppleSystemUIFont"/>
-                                                                </attributes>
-                                                            </fragment>
-                                                        </attributedString>
+                                                    <fontDescription key="fontDescription" name=".AppleSystemUIFont" family=".AppleSystemUIFont" pointSize="15"/>
+                                                    <state key="normal" title="Some Featured Category &gt;">
+                                                        <color key="titleColor" red="0.12265625000000002" green="0.12265625000000002" blue="0.12265625000000002" alpha="1" colorSpace="calibratedRGB"/>
                                                     </state>
                                                 </button>
                                                 <collectionView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" showsHorizontalScrollIndicator="NO" showsVerticalScrollIndicator="NO" dataMode="prototypes" translatesAutoresizingMaskIntoConstraints="NO" id="lBu-Ks-VQe">
@@ -84,7 +72,7 @@
                                                                 <rect key="frame" x="0.0" y="0.0" width="99" height="124"/>
                                                                 <autoresizingMask key="autoresizingMask"/>
                                                                 <subviews>
-                                                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="FdJ-Bm-nta">
+                                                                    <button opaque="NO" contentMode="scaleAspectFit" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="FdJ-Bm-nta">
                                                                         <rect key="frame" x="8" y="0.0" width="83" height="124"/>
                                                                     </button>
                                                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" text="Forty Hadith, An Exposition, Second Revised Edition" lineBreakMode="tailTruncation" numberOfLines="2" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Eah-Gb-D3a">
@@ -164,38 +152,6 @@
             </objects>
             <point key="canvasLocation" x="-580" y="532.98350824587715"/>
         </scene>
-        <!--View Controller-->
-        <scene sceneID="J19-m6-SsH">
-            <objects>
-                <viewController storyboardIdentifier="book" useStoryboardIdentifierAsRestorationIdentifier="YES" id="4oS-Ft-RTg" sceneMemberID="viewController">
-                    <layoutGuides>
-                        <viewControllerLayoutGuide type="top" id="Hy2-um-gpA"/>
-                        <viewControllerLayoutGuide type="bottom" id="6uk-NI-GZ7"/>
-                    </layoutGuides>
-                    <view key="view" contentMode="scaleToFill" id="i2M-Gw-GbC">
-                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
-                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
-                        <subviews>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Some Book!!! :)))" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="O1F-TJ-bzM">
-                                <rect key="frame" x="123" y="323" width="128" height="21"/>
-                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                                <nil key="textColor"/>
-                                <nil key="highlightedColor"/>
-                            </label>
-                        </subviews>
-                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                        <constraints>
-                            <constraint firstAttribute="trailingMargin" secondItem="O1F-TJ-bzM" secondAttribute="trailing" constant="108" id="ABy-ZT-la1"/>
-                            <constraint firstItem="O1F-TJ-bzM" firstAttribute="top" secondItem="Hy2-um-gpA" secondAttribute="bottom" constant="303" id="BiC-e0-a14"/>
-                            <constraint firstItem="6uk-NI-GZ7" firstAttribute="top" secondItem="O1F-TJ-bzM" secondAttribute="bottom" constant="323" id="GeB-NO-eGw"/>
-                            <constraint firstItem="O1F-TJ-bzM" firstAttribute="leading" secondItem="i2M-Gw-GbC" secondAttribute="leadingMargin" constant="107" id="c5d-Co-1DF"/>
-                        </constraints>
-                    </view>
-                </viewController>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="sl3-Xt-U6T" userLabel="First Responder" sceneMemberID="firstResponder"/>
-            </objects>
-            <point key="canvasLocation" x="193" y="913"/>
-        </scene>
         <!--Banner Page View Controller-->
         <scene sceneID="7J0-LA-G0q">
             <objects>
@@ -216,7 +172,7 @@
                         <rect key="frame" x="0.0" y="0.0" width="375" height="143"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="vyY-YV-SAf">
+                            <button opaque="NO" contentMode="scaleAspectFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="vyY-YV-SAf">
                                 <rect key="frame" x="0.0" y="0.0" width="375" height="143"/>
                             </button>
                         </subviews>

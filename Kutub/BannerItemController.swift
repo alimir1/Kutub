@@ -17,6 +17,7 @@ class BannerItemController: UIViewController {
         super.viewDidLoad()
         if let image = image {
             buttonImage.setImage(image, for: .normal)
+            buttonImage.imageView?.contentMode = .scaleAspectFill
             buttonImage.addTarget(self, action: #selector(self.buttonClicked), for: UIControlEvents.touchUpInside)
         }
     }
