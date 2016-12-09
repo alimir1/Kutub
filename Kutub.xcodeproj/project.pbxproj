@@ -18,6 +18,7 @@
 		49CD5E1C1DF223B100BAE21F /* MyBooksViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 49CD5E1B1DF223B100BAE21F /* MyBooksViewController.swift */; };
 		49CD5E1F1DF2565F00BAE21F /* BookModels.swift in Sources */ = {isa = PBXBuildFile; fileRef = 49CD5E1E1DF2565F00BAE21F /* BookModels.swift */; };
 		49CD5E211DF25A7000BAE21F /* BooksStateController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 49CD5E201DF25A7000BAE21F /* BooksStateController.swift */; };
+		49CF7E9B1DFB1748006A789F /* BookListViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 49CF7E9A1DFB1747006A789F /* BookListViewController.swift */; };
 		49E4E6701DE915E600816857 /* A Shi'ite Anthology.epub in Resources */ = {isa = PBXBuildFile; fileRef = 49E4E66F1DE915E600816857 /* A Shi'ite Anthology.epub */; };
 		49FD455A1DE39E3E007895A2 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 49FD45591DE39E3E007895A2 /* AppDelegate.swift */; };
 		49FD455F1DE39E3E007895A2 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 49FD455D1DE39E3E007895A2 /* Main.storyboard */; };
@@ -40,6 +41,7 @@
 		49CD5E1B1DF223B100BAE21F /* MyBooksViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MyBooksViewController.swift; sourceTree = "<group>"; };
 		49CD5E1E1DF2565F00BAE21F /* BookModels.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BookModels.swift; sourceTree = "<group>"; };
 		49CD5E201DF25A7000BAE21F /* BooksStateController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BooksStateController.swift; sourceTree = "<group>"; };
+		49CF7E9A1DFB1747006A789F /* BookListViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BookListViewController.swift; sourceTree = "<group>"; };
 		49E4E66F1DE915E600816857 /* A Shi'ite Anthology.epub */ = {isa = PBXFileReference; lastKnownFileType = file; path = "A Shi'ite Anthology.epub"; sourceTree = "<group>"; };
 		49FD45561DE39E3E007895A2 /* Kutub.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Kutub.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		49FD45591DE39E3E007895A2 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
@@ -128,6 +130,7 @@
 				4988D0131DEF7B3800AD9535 /* Jafar al-Tayyar.epub */,
 				49FD45591DE39E3E007895A2 /* AppDelegate.swift */,
 				49CD5E1B1DF223B100BAE21F /* MyBooksViewController.swift */,
+				49CF7E9A1DFB1747006A789F /* BookListViewController.swift */,
 				496950991DFA17A700CA66B6 /* Browse */,
 				49FD455D1DE39E3E007895A2 /* Main.storyboard */,
 				49057F271DF904270058818B /* TestingAround.swift */,
@@ -282,6 +285,7 @@
 				49057F2C1DF911310058818B /* BrowseCollectionCell.swift in Sources */,
 				49CD5E1C1DF223B100BAE21F /* MyBooksViewController.swift in Sources */,
 				49057F281DF904270058818B /* TestingAround.swift in Sources */,
+				49CF7E9B1DFB1748006A789F /* BookListViewController.swift in Sources */,
 				49CD5E1F1DF2565F00BAE21F /* BookModels.swift in Sources */,
 				4959C2821DF9CEEA00E8CB0D /* BannerPageViewController.swift in Sources */,
 				4959C2841DF9D03200E8CB0D /* BannerItemController.swift in Sources */,

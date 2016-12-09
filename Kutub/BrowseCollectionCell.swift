@@ -16,17 +16,19 @@ class BrowseCollectionCell: UICollectionViewCell {
     func configureCell(title: String, author: String, imageCover: UIImage? = nil) {
         if let image = imageCover {
             bookCover.imageView?.contentMode = .scaleAspectFit
-            configureLabelsUI(isContainsImage: true)
+            configureLabelsUI(isImageContained: true)
             bookCover.setImage(image, for: .normal)
         } else {
-            configureLabelsUI(isContainsImage: false)
+            configureLabelsUI(isImageContained: false)
             bookTitle.text = title
             authors.text = author
         }
     }
     
-    func configureLabelsUI(isContainsImage: Bool) {
-        authors.isHidden = isContainsImage
-        bookTitle.isHidden = isContainsImage
+    func configureLabelsUI(isImageContained: Bool) {
+        authors.isUserInteractionEnabled = false
+        bookTitle.isUserInteractionEnabled = false
+        authors.isHidden = isImageContained
+        bookTitle.isHidden = isImageContained
     }
 }

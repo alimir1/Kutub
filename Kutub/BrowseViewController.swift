@@ -44,9 +44,9 @@ class BrowseViewController: UIViewController {
                                 let browsingBookValues = snapshot.value as! [String : AnyObject]
                                 let browsingBook = self.createBrowsingBookObject(data: browsingBookValues, uniqueKey: uniqueBookKey.key)
                                 self.featuredBooksCollection[featuredCategoryIndex].books.append(browsingBook)
+                                self.tableView.reloadData()
                             })
                         }
-                        self.tableView.reloadData()
                     })
                 }
             }
