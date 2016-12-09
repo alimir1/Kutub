@@ -26,9 +26,10 @@ class BrowseViewController: UIViewController {
     }
     
     func getDataFromFirebase() {
-        let ref = FIRDatabase.database().reference()
         // TODO: - DON'T FORGET TO REMOVE OBSERVERS ONCE YOU'RE DONE!!!
-        ref.child("FeaturedBooksCategories").observeSingleEvent(of: .value, with: {
+        // TODO: - ERROR HANDLING! (WHAT IF I ACCIDENTLY PUT 'AUTHORR' THEN THE APP CRASHES!)
+        let databaseRef = FIRDatabase.database().reference()
+        databaseRef.child("FeaturedBooksCategories").observeSingleEvent(of: .value, with: {
             (featuredBooks) in
             for (featuredCategoryIndex, featuredBook) in ((featuredBooks.children.allObjects as! [FIRDataSnapshot])).enumerated() {
                 let featuredTitle = featuredBook.key
@@ -36,21 +37,27 @@ class BrowseViewController: UIViewController {
                     // Example: [Ayatullah Murtadha Mutahhari: "Authors"]...
                     let featuredReference = featuredBook.value as! String
                     self.featuredBooksCollection.append(FeaturedBooks(name: featuredBook.key, books: [BrowsingBook]()))
-                    ref.child("Kutub/\(featuredReference)/\(featuredTitle)/Books").observeSingleEvent(of: .value, with: {
+                    let databaseRef = FIRDatabase.database().reference()
+                    databaseRef.child("Kutub/\(featuredReference)/\(featuredTitle)/Books").observeSingleEvent(of: .value, with: {
                         (bookUniqueKeys) in
-                        for uniqueBookKey in bookUniqueKeys.children.allObjects as! [FIRDataSnapshot] {
-                            ref.child("Kutub/Books/\(uniqueBookKey.key)").observeSingleEvent(of: .value, with: {
-                                (snapshot) in
-                                let browsingBookValues = snapshot.value as! [String : AnyObject]
-                                let browsingBook = self.createBrowsingBookObject(data: browsingBookValues, uniqueKey: uniqueBookKey.key)
-                                self.featuredBooksCollection[featuredCategoryIndex].books.append(browsingBook)
-                                self.tableView.reloadData()
-                            })
-                        }
+                        self.downloadBrowsingBooks(bookUniqueKeys: bookUniqueKeys, index: featuredCategoryIndex)
                     })
                 }
             }
         })
+    }
+    
+    func downloadBrowsingBooks(bookUniqueKeys: FIRDataSnapshot, index: Int) {
+        for uniqueBookKey in bookUniqueKeys.children.allObjects as! [FIRDataSnapshot] {
+            let databaseRef = FIRDatabase.database().reference()
+            databaseRef.child("Kutub/Books/\(uniqueBookKey.key)").observeSingleEvent(of: .value, with: {
+                (snapshot) in
+                let browsingBookValues = snapshot.value as! [String : AnyObject]
+                let browsingBook = self.createBrowsingBookObject(data: browsingBookValues, uniqueKey: uniqueBookKey.key)
+                self.featuredBooksCollection[index].books.append(browsingBook)
+                self.tableView.reloadData()
+            })
+        }
     }
     
     func createBrowsingBookObject(data: [String : AnyObject], uniqueKey: String) -> BrowsingBook {
