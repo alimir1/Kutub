@@ -19,6 +19,7 @@ class BrowseViewController: UIViewController {
     @IBOutlet weak var tableView: UITableView!
     var featuredBooksCollection = [FeaturedBooks]()
     var storedOffsets = [Int: CGFloat]()
+    var featuredCollectionCache = [String : Int]()
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -29,12 +30,16 @@ class BrowseViewController: UIViewController {
         // TODO: - DON'T FORGET TO REMOVE OBSERVERS ONCE YOU'RE DONE!!!
         // TODO: - ERROR HANDLING! (WHAT IF I ACCIDENTLY PUT 'AUTHORR' THEN THE APP CRASHES!)
         let databaseRef = FIRDatabase.database().reference()
-        databaseRef.child("FeaturedBooksCategories").observeSingleEvent(of: .value, with: {
+        databaseRef.child("FeaturedBooksCategories").observe(.value, with: {
             (featuredBooks) in
             for (featuredCategoryIndex, featuredBook) in ((featuredBooks.children.allObjects as! [FIRDataSnapshot])).enumerated() {
                 let featuredTitle = featuredBook.key
+                guard (self.featuredCollectionCache[featuredTitle] == nil) else {
+                    return
+                }
+                self.featuredCollectionCache[featuredTitle] = featuredCategoryIndex
                 if !featuredBook.hasChildren() {
-                    // Example: [Ayatullah Murtadha Mutahhari: "Authors"]...
+                    // Example: [Ayatullah Murtadha Mutahhari : "Authors"]...
                     let featuredReference = featuredBook.value as! String
                     self.featuredBooksCollection.append(FeaturedBooks(name: featuredBook.key, books: [BrowsingBook]()))
                     let databaseRef = FIRDatabase.database().reference()
@@ -42,6 +47,9 @@ class BrowseViewController: UIViewController {
                         (bookUniqueKeys) in
                         self.downloadBrowsingBooks(bookUniqueKeys: bookUniqueKeys, index: featuredCategoryIndex)
                     })
+                } else {
+                    // Example: [Custom Category : [book1, book2, book3 ...]]
+                    
                 }
             }
         })
