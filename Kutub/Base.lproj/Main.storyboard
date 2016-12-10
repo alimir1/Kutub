@@ -83,7 +83,7 @@
                                                                         <nil key="highlightedColor"/>
                                                                     </label>
                                                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Ayatullah Sayyid Imam Ruhallah Musawi Khomeini" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="2" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="OhE-UU-ylu">
-                                                                        <rect key="frame" x="3" y="142" width="98" height="14"/>
+                                                                        <rect key="frame" x="3" y="142" width="98" height="24"/>
                                                                         <fontDescription key="fontDescription" type="system" pointSize="10"/>
                                                                         <nil key="textColor"/>
                                                                         <nil key="highlightedColor"/>
@@ -100,7 +100,7 @@
                                                                 <constraint firstAttribute="leadingMargin" secondItem="Eah-Gb-D3a" secondAttribute="leading" id="gVg-dZ-iHK"/>
                                                                 <constraint firstAttribute="bottomMargin" secondItem="FdJ-Bm-nta" secondAttribute="bottom" constant="32" id="gzZ-Lq-Nx1"/>
                                                                 <constraint firstItem="FdJ-Bm-nta" firstAttribute="top" secondItem="HEF-dp-AQu" secondAttribute="topMargin" constant="-8" id="i0e-PI-CUu"/>
-                                                                <constraint firstAttribute="bottomMargin" secondItem="OhE-UU-ylu" secondAttribute="bottom" constant="9" id="lEs-34-aXp"/>
+                                                                <constraint firstAttribute="bottomMargin" secondItem="OhE-UU-ylu" secondAttribute="bottom" constant="-1" id="nSC-eT-KUi"/>
                                                                 <constraint firstAttribute="trailingMargin" secondItem="OhE-UU-ylu" secondAttribute="trailing" constant="-5" id="uS3-y3-acj"/>
                                                                 <constraint firstAttribute="bottomMargin" secondItem="Eah-Gb-D3a" secondAttribute="bottom" constant="113" id="uVw-gB-53y"/>
                                                             </constraints>
