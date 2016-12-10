@@ -13,15 +13,27 @@ class BrowseCollectionCell: UICollectionViewCell {
     @IBOutlet weak var authors: UILabel!
     @IBOutlet weak var bookCover: UIButton!
     
-    func configureCell(title: String, author: String, imageCover: UIImage? = nil) {
+    func configureCell(title: String, authorNames: [String]? = nil, imageCover: UIImage? = nil) {
+        
+        var authorName = ""
+        if let authors = authorNames {
+            authorName = authors[0]
+            for index in 1..<authors.count {
+                authorName += ", \(authors[index])"
+            }
+        }
+        
         if let image = imageCover {
             bookCover.imageView?.contentMode = .scaleAspectFit
             configureLabelsUI(isImageContained: true)
             bookCover.setImage(image, for: .normal)
+            authors.text = authorName
         } else {
+            bookCover.imageView?.contentMode = .scaleToFill
             configureLabelsUI(isImageContained: false)
+            bookCover.setImage(#imageLiteral(resourceName: "bookCoverPlaceholder"), for: .normal)
             bookTitle.text = title
-            authors.text = author
+            authors.text = authorName
         }
     }
     

@@ -20,17 +20,28 @@ class BrowseViewController: UIViewController {
     var featuredBooksCollection = [FeaturedBooks]()
     var storedOffsets = [Int: CGFloat]()
     var featuredCollectionCache = [String : Int]()
+    var databaseReference: FIRDatabaseReference!
+    var handleValueForFeaturedBooksCategories: UInt!
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        databaseReference = FIRDatabase.database().reference()
+    }
+    
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
         getDataFromFirebase()
+    }
+    
+    override func viewDidDisappear(_ animated: Bool) {
+        super.viewDidDisappear(animated)
+        databaseReference.removeObserver(withHandle: handleValueForFeaturedBooksCategories)
     }
     
     func getDataFromFirebase() {
         // TODO: - DON'T FORGET TO REMOVE OBSERVERS ONCE YOU'RE DONE!!!
         // TODO: - ERROR HANDLING! (WHAT IF I ACCIDENTLY PUT 'AUTHORR' THEN THE APP CRASHES!)
-        let databaseRef = FIRDatabase.database().reference()
-        databaseRef.child("FeaturedBooksCategories").observe(.value, with: {
+        handleValueForFeaturedBooksCategories = databaseReference.child("FeaturedBooksCategories").observe(.value, with: {
             (featuredBooks) in
             for (featuredCategoryIndex, featuredBook) in ((featuredBooks.children.allObjects as! [FIRDataSnapshot])).enumerated() {
                 let featuredTitle = featuredBook.key
@@ -42,8 +53,7 @@ class BrowseViewController: UIViewController {
                     // Example: [Ayatullah Murtadha Mutahhari : "Authors"]...
                     let featuredReference = featuredBook.value as! String
                     self.featuredBooksCollection.append(FeaturedBooks(name: featuredBook.key, books: [BrowsingBook]()))
-                    let databaseRef = FIRDatabase.database().reference()
-                    databaseRef.child("Kutub/\(featuredReference)/\(featuredTitle)/Books").observeSingleEvent(of: .value, with: {
+                    self.databaseReference.child("Kutub/\(featuredReference)/\(featuredTitle)/Books").queryLimited(toFirst: 25).observeSingleEvent(of: .value, with: {
                         (bookUniqueKeys) in
                         self.downloadBrowsingBooks(bookUniqueKeys: bookUniqueKeys, index: featuredCategoryIndex)
                     })
@@ -57,8 +67,7 @@ class BrowseViewController: UIViewController {
     
     func downloadBrowsingBooks(bookUniqueKeys: FIRDataSnapshot, index: Int) {
         for uniqueBookKey in bookUniqueKeys.children.allObjects as! [FIRDataSnapshot] {
-            let databaseRef = FIRDatabase.database().reference()
-            databaseRef.child("Kutub/Books/\(uniqueBookKey.key)").observeSingleEvent(of: .value, with: {
+            databaseReference.child("Kutub/Books/\(uniqueBookKey.key)").observeSingleEvent(of: .value, with: {
                 (snapshot) in
                 let browsingBookValues = snapshot.value as! [String : AnyObject]
                 let browsingBook = self.createBrowsingBookObject(data: browsingBookValues, uniqueKey: uniqueBookKey.key)
@@ -125,15 +134,10 @@ extension BrowseViewController: UITableViewDelegate, UITableViewDataSource, UICo
     func collectionView(_ collectionView: UICollectionView, willDisplay cell: UICollectionViewCell, forItemAt indexPath: IndexPath) {
         
         guard let browseCollectionCell = cell as? BrowseCollectionCell else { return }
-        var authorName = ""
         let bookTitle = featuredBooksCollection[collectionView.tag].books[indexPath.item].title
-        
-        if let authors = featuredBooksCollection[collectionView.tag].books[indexPath.item].authors {
-            for author in authors {
-                authorName += ", \(author)"
-            }
-        }
-        browseCollectionCell.configureCell(title: bookTitle, author: authorName)
+        let authors = featuredBooksCollection[collectionView.tag].books[indexPath.item].authors
+
+        browseCollectionCell.configureCell(title: bookTitle, authorNames: authors)
     }
 }
 
