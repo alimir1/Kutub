@@ -8,34 +8,50 @@
 
 import UIKit
 
-class BrowseCell: UITableViewCell {
+class BrowseCell: UITableViewCell, UICollectionViewDelegate, UICollectionViewDataSource {
     
     @IBOutlet private weak var collectionView: UICollectionView!
     @IBOutlet weak var featuredCategoryName: UIButton!
     
     override func awakeFromNib() {
         super.awakeFromNib()
-        // Initialization code
     }
     
-    var collectionViewOffset: CGFloat {
-        get {
-            return collectionView.contentOffset.x
-        }
-        
-        set {
-            collectionView.contentOffset.x = newValue
-        }
-    }
+//    var collectionViewOffset: CGFloat {
+//        get {
+//            return collectionView.contentOffset.x
+//        }
+//        
+//        set {
+//            collectionView.contentOffset.x = newValue
+//        }
+//    }
     
-    func setFeaturedCategoryTitle(name: String) {
-        featuredCategoryName.setTitle(name + " >", for: .normal)
+    var books = [BrowsingBook]()
+    
+    func configureCell(title: String) {
+        featuredCategoryName.setTitle(title + " >", for: .normal)
+        setCollectionViewDataSourceDelegate(delegate: self, dataSource: self)
     }
 
-    func setCollectionViewDataSourceDelegate <D: UICollectionViewDelegate, S: UICollectionViewDataSource>(dataDelegate: D, dataSource: S, forRow row: Int) {
-        collectionView.delegate = dataDelegate
+    internal func setCollectionViewDataSourceDelegate <D: UICollectionViewDelegate, S: UICollectionViewDataSource>(delegate: D, dataSource: S) {
+        collectionView.delegate = delegate
         collectionView.dataSource = dataSource
-        collectionView.tag = row
         collectionView.reloadData()
+    }
+    
+    internal func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
+        return books.count
+    }
+    
+    internal func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
+        return collectionView.dequeueReusableCell(withReuseIdentifier: "browseCollectionCell", for: indexPath)
+    }
+    
+    internal func collectionView(_ collectionView: UICollectionView, willDisplay cell: UICollectionViewCell, forItemAt indexPath: IndexPath) {
+        guard let browseCollectionCell = cell as? BrowseCollectionCell else { return }
+        let bookTitle = books[indexPath.item].title
+        let authors = books[indexPath.item].authors
+        browseCollectionCell.configureCell(title: bookTitle, authorNames: authors)
     }
 }

@@ -14,7 +14,6 @@ class BrowseCollectionCell: UICollectionViewCell {
     @IBOutlet weak var bookCover: UIButton!
     
     func configureCell(title: String, authorNames: [String]? = nil, imageCover: UIImage? = nil) {
-        
         var authorName = ""
         if let authors = authorNames {
             authorName = authors[0]
@@ -22,7 +21,6 @@ class BrowseCollectionCell: UICollectionViewCell {
                 authorName += ", \(authors[index])"
             }
         }
-        
         if let image = imageCover {
             bookCover.imageView?.contentMode = .scaleAspectFit
             configureLabelsUI(isImageContained: true)

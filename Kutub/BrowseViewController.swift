@@ -11,11 +11,6 @@ import Firebase
 
 class BrowseViewController: UIViewController {
     
-    struct FeaturedBooks {
-        let name: String
-        var books: [BrowsingBook]
-    }
-    
     @IBOutlet weak var tableView: UITableView!
     var featuredBooksCollection = [FeaturedBooks]()
     var storedOffsets = [Int: CGFloat]()
@@ -39,8 +34,6 @@ class BrowseViewController: UIViewController {
     }
     
     func getDataFromFirebase() {
-        // TODO: - DON'T FORGET TO REMOVE OBSERVERS ONCE YOU'RE DONE!!!
-        // TODO: - ERROR HANDLING! (WHAT IF I ACCIDENTLY PUT 'AUTHORR' THEN THE APP CRASHES!)
         handleValueForFeaturedBooksCategories = databaseReference.child("FeaturedBooksCategories").observe(.value, with: {
             (featuredBooks) in
             for (featuredCategoryIndex, featuredBook) in ((featuredBooks.children.allObjects as! [FIRDataSnapshot])).enumerated() {
@@ -100,7 +93,7 @@ class BrowseViewController: UIViewController {
     }
 }
 
-extension BrowseViewController: UITableViewDelegate, UITableViewDataSource, UICollectionViewDelegate, UICollectionViewDataSource {
+extension BrowseViewController: UITableViewDelegate, UITableViewDataSource {
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         return featuredBooksCollection.count
     }
@@ -110,34 +103,15 @@ extension BrowseViewController: UITableViewDelegate, UITableViewDataSource, UICo
     }
     
     func tableView(_ tableView: UITableView, willDisplay cell: UITableViewCell, forRowAt indexPath: IndexPath) {
-        
         guard let browseCell = cell as? BrowseCell else { return }
-        
-        browseCell.collectionViewOffset = storedOffsets[indexPath.row] ?? 0
-        browseCell.setFeaturedCategoryTitle(name: featuredBooksCollection[indexPath.row].name)
-        browseCell.setCollectionViewDataSourceDelegate(dataDelegate: self, dataSource: self, forRow: indexPath.row)
+//        browseCell.collectionViewOffset = storedOffsets[indexPath.row] ?? 0
+        browseCell.configureCell(title: featuredBooksCollection[indexPath.row].name)
+        browseCell.books = featuredBooksCollection[indexPath.row].books
     }
     
     func tableView(_ tableView: UITableView, didEndDisplaying cell: UITableViewCell, forRowAt indexPath: IndexPath) {
         guard let browseCell = cell as? BrowseCell else { return }
-        storedOffsets[indexPath.row] = browseCell.collectionViewOffset
-    }
-    
-    func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-        return featuredBooksCollection[collectionView.tag].books.count
-    }
-    
-    func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
-        return collectionView.dequeueReusableCell(withReuseIdentifier: "browseCollectionCell", for: indexPath)
-    }
-    
-    func collectionView(_ collectionView: UICollectionView, willDisplay cell: UICollectionViewCell, forItemAt indexPath: IndexPath) {
-        
-        guard let browseCollectionCell = cell as? BrowseCollectionCell else { return }
-        let bookTitle = featuredBooksCollection[collectionView.tag].books[indexPath.item].title
-        let authors = featuredBooksCollection[collectionView.tag].books[indexPath.item].authors
-
-        browseCollectionCell.configureCell(title: bookTitle, authorNames: authors)
+//        storedOffsets[indexPath.row] = browseCell.collectionViewOffset
     }
 }
 

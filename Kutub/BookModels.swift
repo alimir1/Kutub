@@ -56,3 +56,9 @@ class DownloadedBook: Object, BookMetadata {
     
     override class func primaryKey() -> String? { return "uniqueKey" }
 }
+
+
+struct FeaturedBooks {
+    let name: String
+    var books: [BrowsingBook]
+}
