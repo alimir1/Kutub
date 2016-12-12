@@ -8,7 +8,7 @@
 
 import UIKit
 
-class BrowseCollectionCell: UICollectionViewCell {
+class BooksCollectionCell: UICollectionViewCell {
     @IBOutlet weak var bookTitle: UILabel!
     @IBOutlet weak var authors: UILabel!
     @IBOutlet weak var bookCover: UIButton!

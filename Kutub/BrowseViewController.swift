@@ -12,7 +12,7 @@ import Firebase
 class BrowseViewController: UIViewController {
     
     @IBOutlet weak var tableView: UITableView!
-    var featuredBooksCollection = [FeaturedBooks]()
+    var featuredCollection = [Featured]()
     var storedOffsets = [Int: CGFloat]()
     var featuredCollectionCache = [String]()
     var databaseReference: FIRDatabaseReference!
@@ -42,6 +42,7 @@ class BrowseViewController: UIViewController {
                 }
                 // Start downloading process
                 if !featuredCategoryValue.hasChildren() {
+                    self.featuredCollection.append(Featured(name: featuredTitle, typeOfItemsContained: .books, books: [BrowsingBook](), spotlights: [Spotlight]()))
                     self.getBooksFromSections(section: featuredCategoryValue.value as! String, sectionName: featuredTitle, featuredCategoryIndex: featuredCategoryIndex)
                 } else {
                     if featuredTitle == "Custom" {
@@ -49,7 +50,7 @@ class BrowseViewController: UIViewController {
                         for customFeaturedList in featuredCategoryValue.children.allObjects as! [FIRDataSnapshot] {
                             let title = customFeaturedList.key
                             let uniqueBookKeys = (customFeaturedList.value as! [String : Bool]).map {$0.key}
-                            self.featuredBooksCollection.append(FeaturedBooks(name: title, books: [BrowsingBook]()))
+                            self.featuredCollection.append(Featured(name: title, typeOfItemsContained: .books, books: [BrowsingBook](), spotlights: [Spotlight]()))
                             self.downloadBrowsingBooks(bookUniqueKeys: uniqueBookKeys, index: featuredCategoryIndex)
                         }
                     } else if featuredTitle == "Spotlight" {
@@ -62,7 +63,6 @@ class BrowseViewController: UIViewController {
     
     func getBooksFromSections(section: String, sectionName: String, featuredCategoryIndex: Int) {
         // Example: [Ayatullah Murtadha Mutahhari : "Authors"]...
-        self.featuredBooksCollection.append(FeaturedBooks(name: sectionName, books: [BrowsingBook]()))
         self.databaseReference.child("Kutub/\(section)/\(sectionName)/Books").queryLimited(toFirst: 25).observeSingleEvent(of: .value, with: {
             (snapshot) in
             let bookUniqueKeys = (snapshot.value as! [String : Bool]).map { $0.key }
@@ -76,7 +76,7 @@ class BrowseViewController: UIViewController {
                 (snapshot) in
                 let browsingBookValues = snapshot.value as! [String : AnyObject]
                 let browsingBook = self.createBrowsingBookObject(data: browsingBookValues, uniqueKey: uniqueBookKey)
-                self.featuredBooksCollection[index].books.append(browsingBook)
+                self.featuredCollection[index].books.append(browsingBook)
                 self.tableView.reloadData()
             })
         }
@@ -107,7 +107,7 @@ class BrowseViewController: UIViewController {
 
 extension BrowseViewController: UITableViewDelegate, UITableViewDataSource {
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return featuredBooksCollection.count
+        return featuredCollection.count
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
@@ -116,8 +116,7 @@ extension BrowseViewController: UITableViewDelegate, UITableViewDataSource {
     
     func tableView(_ tableView: UITableView, willDisplay cell: UITableViewCell, forRowAt indexPath: IndexPath) {
         guard let browseCell = cell as? BrowseCell else { return }
-        browseCell.configureCell(title: featuredBooksCollection[indexPath.row].name)
-        browseCell.books = featuredBooksCollection[indexPath.row].books
+        browseCell.configureCell(title: featuredCollection[indexPath.row].name, books: featuredCollection[indexPath.row].books, spotlights: featuredCollection[indexPath.row].spotlights)
     }
 }
 

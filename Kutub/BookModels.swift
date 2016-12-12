@@ -58,7 +58,18 @@ class DownloadedBook: Object, BookMetadata {
 }
 
 
-struct FeaturedBooks {
+enum FeaturedItem {
+    case books, spotlights
+}
+
+struct Featured {
     let name: String
+    var typeOfItemsContained: FeaturedItem
     var books: [BrowsingBook]
+    var spotlights: [Spotlight]
+}
+
+struct Spotlight {
+    let uniqueID: String // eg. Author names, tag names, ...
+    var bookReferences: [String] // eg. [islamandhumanity23, kl3klnsd32, ...]
 }
