@@ -9,9 +9,9 @@
 import UIKit
 
 class BooksCollectionCell: UICollectionViewCell {
-    @IBOutlet weak var bookTitle: UILabel!
-    @IBOutlet weak var authors: UILabel!
-    @IBOutlet weak var bookCover: UIButton!
+    @IBOutlet private weak var bookTitle: UILabel!
+    @IBOutlet private weak var authors: UILabel!
+    @IBOutlet private weak var bookCover: UIButton!
     
     func configureCell(title: String, authorNames: [String]? = nil, imageCover: UIImage? = nil) {
         var authorName = ""
@@ -35,7 +35,7 @@ class BooksCollectionCell: UICollectionViewCell {
         }
     }
     
-    func configureLabelsUI(isImageContained: Bool) {
+    internal func configureLabelsUI(isImageContained: Bool) {
         authors.isUserInteractionEnabled = false
         bookTitle.isUserInteractionEnabled = false
         authors.isHidden = isImageContained

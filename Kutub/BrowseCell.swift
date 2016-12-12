@@ -11,7 +11,7 @@ import UIKit
 class BrowseCell: UITableViewCell, UICollectionViewDelegate, UICollectionViewDataSource {
     
     @IBOutlet private weak var collectionView: UICollectionView!
-    @IBOutlet weak var featuredCategoryName: UIButton!
+    @IBOutlet private weak var featuredCategoryName: UIButton!
     
     override func awakeFromNib() {
         super.awakeFromNib()
@@ -21,23 +21,12 @@ class BrowseCell: UITableViewCell, UICollectionViewDelegate, UICollectionViewDat
     internal var spotlights = [Spotlight]()
     internal var cellType: FeaturedItem!
     
-    func configureCell(title: String, books: [BrowsingBook], spotlights: [Spotlight]) {
-        featuredCategoryName.setTitle(title + " >", for: .normal)
-        self.books = books
-        self.spotlights = spotlights
-        setCollectionViewDataSourceDelegate(delegate: self, dataSource: self)
-    }
-    
     func configureCell(of type: FeaturedItem, title: String, books: [BrowsingBook], spotlights: [Spotlight]) {
         setCollectionViewDataSourceDelegate(delegate: self, dataSource: self)
         featuredCategoryName.setTitle(title + " >", for: .normal)
         self.cellType = type
-        switch type {
-        case .books:
-            print("")
-        case .spotlights:
-            print("")
-        }
+        self.books = books
+        self.spotlights = spotlights
     }
 
     internal func setCollectionViewDataSourceDelegate <D: UICollectionViewDelegate, S: UICollectionViewDataSource>(delegate: D, dataSource: S) {
@@ -47,17 +36,32 @@ class BrowseCell: UITableViewCell, UICollectionViewDelegate, UICollectionViewDat
     }
     
     internal func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-        return books.count
+        if cellType == .books {
+            return books.count
+        } else if cellType == .spotlights {
+            return spotlights.count
+        } else {
+            return 0
+        }
     }
     
     internal func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
-        return collectionView.dequeueReusableCell(withReuseIdentifier: "booksCollectionCell", for: indexPath)
+        if cellType == .books {
+            return collectionView.dequeueReusableCell(withReuseIdentifier: "booksCollectionCell", for: indexPath)
+        } else {
+            return collectionView.dequeueReusableCell(withReuseIdentifier: "spotlightsCollectionCell", for: indexPath)
+        }
     }
     
     internal func collectionView(_ collectionView: UICollectionView, willDisplay cell: UICollectionViewCell, forItemAt indexPath: IndexPath) {
-        guard let browseCollectionCell = cell as? BooksCollectionCell else { return }
-        let bookTitle = books[indexPath.item].title
-        let authors = books[indexPath.item].authors
-        browseCollectionCell.configureCell(title: bookTitle, authorNames: authors)
+        if let booksCollectionCell = cell as? BooksCollectionCell {
+            let bookTitle = books[indexPath.item].title
+            let authors = books[indexPath.item].authors
+            booksCollectionCell.configureCell(title: bookTitle, authorNames: authors)
+        } else {
+            if let spotlightsCollectionCell = cell as? spotlightsCollectionViewCell {
+                spotlightsCollectionCell.configureCell(image: #imageLiteral(resourceName: "testImage"))
+            }
+        }
     }
 }

@@ -12,6 +12,7 @@
 		49057F2C1DF911310058818B /* BooksCollectionCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 49057F2B1DF911310058818B /* BooksCollectionCell.swift */; };
 		4959C2821DF9CEEA00E8CB0D /* BannerPageViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4959C2811DF9CEEA00E8CB0D /* BannerPageViewController.swift */; };
 		4959C2841DF9D03200E8CB0D /* BannerItemController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4959C2831DF9D03200E8CB0D /* BannerItemController.swift */; };
+		497980AA1DFF254D00E89740 /* spotlightsCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 497980A91DFF254D00E89740 /* spotlightsCollectionViewCell.swift */; };
 		498643581DFB8A3E00B1FDF8 /* BookListCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 498643571DFB8A3E00B1FDF8 /* BookListCell.swift */; };
 		4988D0141DEF7B3800AD9535 /* Jafar al-Tayyar.epub in Resources */ = {isa = PBXBuildFile; fileRef = 4988D0131DEF7B3800AD9535 /* Jafar al-Tayyar.epub */; };
 		498E456B1DF5D9690081C9A5 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 498E456A1DF5D9680081C9A5 /* GoogleService-Info.plist */; };
@@ -36,6 +37,7 @@
 		49057F2B1DF911310058818B /* BooksCollectionCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BooksCollectionCell.swift; sourceTree = "<group>"; };
 		4959C2811DF9CEEA00E8CB0D /* BannerPageViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BannerPageViewController.swift; sourceTree = "<group>"; };
 		4959C2831DF9D03200E8CB0D /* BannerItemController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BannerItemController.swift; sourceTree = "<group>"; };
+		497980A91DFF254D00E89740 /* spotlightsCollectionViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = spotlightsCollectionViewCell.swift; sourceTree = "<group>"; };
 		498643571DFB8A3E00B1FDF8 /* BookListCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BookListCell.swift; sourceTree = "<group>"; };
 		4988D0131DEF7B3800AD9535 /* Jafar al-Tayyar.epub */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Jafar al-Tayyar.epub"; sourceTree = "<group>"; };
 		498E456A1DF5D9680081C9A5 /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
@@ -82,6 +84,7 @@
 				498E456C1DF5DE810081C9A5 /* BrowseViewController.swift */,
 				49057F291DF9056E0058818B /* BrowseCell.swift */,
 				49057F2B1DF911310058818B /* BooksCollectionCell.swift */,
+				497980A91DFF254D00E89740 /* spotlightsCollectionViewCell.swift */,
 				4969509A1DFA183700CA66B6 /* Banner */,
 			);
 			name = Browse;
@@ -289,6 +292,7 @@
 				49057F2C1DF911310058818B /* BooksCollectionCell.swift in Sources */,
 				49CD5E1C1DF223B100BAE21F /* MyBooksViewController.swift in Sources */,
 				49057F281DF904270058818B /* TestingAround.swift in Sources */,
+				497980AA1DFF254D00E89740 /* spotlightsCollectionViewCell.swift in Sources */,
 				49CF7E9B1DFB1748006A789F /* BookListViewController.swift in Sources */,
 				49CD5E1F1DF2565F00BAE21F /* BookModels.swift in Sources */,
 				4959C2821DF9CEEA00E8CB0D /* BannerPageViewController.swift in Sources */,

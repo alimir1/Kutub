@@ -116,7 +116,7 @@ extension BrowseViewController: UITableViewDelegate, UITableViewDataSource {
     
     func tableView(_ tableView: UITableView, willDisplay cell: UITableViewCell, forRowAt indexPath: IndexPath) {
         guard let browseCell = cell as? BrowseCell else { return }
-        browseCell.configureCell(title: featuredCollection[indexPath.row].name, books: featuredCollection[indexPath.row].books, spotlights: featuredCollection[indexPath.row].spotlights)
+        browseCell.configureCell(of: featuredCollection[indexPath.row].typeOfItemsContained, title: featuredCollection[indexPath.row].name, books: featuredCollection[indexPath.row].books, spotlights: featuredCollection[indexPath.row].spotlights)
     }
 }
 

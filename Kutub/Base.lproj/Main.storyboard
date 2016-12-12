@@ -42,7 +42,7 @@
                                         <rect key="frame" x="0.0" y="171" width="375" height="230"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="oaa-Uf-whV" id="E4z-4X-FOI">
-                                            <rect key="frame" x="0.0" y="0.0" width="375" height="229.5"/>
+                                            <rect key="frame" x="0.0" y="0.0" width="375" height="229"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
                                                 <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="qKw-fA-Hfr">
@@ -67,7 +67,7 @@
                                                     </collectionViewFlowLayout>
                                                     <cells>
                                                         <collectionViewCell opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" reuseIdentifier="booksCollectionCell" id="HEF-dp-AQu" customClass="BooksCollectionCell" customModule="Kutub" customModuleProvider="target">
-                                                            <rect key="frame" x="10" y="2.5" width="104" height="173"/>
+                                                            <rect key="frame" x="10" y="3" width="104" height="173"/>
                                                             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                                             <view key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center">
                                                                 <rect key="frame" x="0.0" y="0.0" width="104" height="173"/>
@@ -108,6 +108,29 @@
                                                                 <outlet property="authors" destination="OhE-UU-ylu" id="6ZU-K5-0g3"/>
                                                                 <outlet property="bookCover" destination="FdJ-Bm-nta" id="bGt-FP-s8k"/>
                                                                 <outlet property="bookTitle" destination="Eah-Gb-D3a" id="aYS-xz-jXV"/>
+                                                            </connections>
+                                                        </collectionViewCell>
+                                                        <collectionViewCell opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" reuseIdentifier="spotlightsCollectionCell" id="HTn-ZO-W8c" customClass="spotlightsCollectionViewCell" customModule="Kutub" customModuleProvider="target">
+                                                            <rect key="frame" x="124" y="35" width="210" height="108"/>
+                                                            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                                            <view key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center">
+                                                                <rect key="frame" x="0.0" y="0.0" width="210" height="108"/>
+                                                                <autoresizingMask key="autoresizingMask"/>
+                                                                <subviews>
+                                                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="da9-om-WM6">
+                                                                        <rect key="frame" x="0.0" y="0.0" width="210" height="108"/>
+                                                                    </button>
+                                                                </subviews>
+                                                            </view>
+                                                            <constraints>
+                                                                <constraint firstAttribute="trailing" secondItem="da9-om-WM6" secondAttribute="trailing" id="3M8-oX-KaR"/>
+                                                                <constraint firstAttribute="bottom" secondItem="da9-om-WM6" secondAttribute="bottom" id="Ocg-Pp-4Ia"/>
+                                                                <constraint firstItem="da9-om-WM6" firstAttribute="top" secondItem="HTn-ZO-W8c" secondAttribute="top" id="cQN-Ha-HRn"/>
+                                                                <constraint firstItem="da9-om-WM6" firstAttribute="leading" secondItem="HTn-ZO-W8c" secondAttribute="leading" id="dAG-QC-oYK"/>
+                                                            </constraints>
+                                                            <size key="customSize" width="210" height="108"/>
+                                                            <connections>
+                                                                <outlet property="spotlightButtonImage" destination="da9-om-WM6" id="Yem-QJ-gVG"/>
                                                             </connections>
                                                         </collectionViewCell>
                                                     </cells>
@@ -204,7 +227,7 @@
                                 <rect key="frame" x="0.0" y="28" width="375" height="150"/>
                                 <autoresizingMask key="autoresizingMask"/>
                                 <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="iaJ-s6-8HL" id="Xxc-hG-ymn">
-                                    <rect key="frame" x="0.0" y="0.0" width="375" height="149.5"/>
+                                    <rect key="frame" x="0.0" y="0.0" width="375" height="149"/>
                                     <autoresizingMask key="autoresizingMask"/>
                                     <subviews>
                                         <imageView userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="0hU-Yi-H7m">
