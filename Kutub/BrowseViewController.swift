@@ -32,6 +32,7 @@ class BrowseViewController: UIViewController {
             (featuredBooks) in
             for (featuredCategoryIndex, featuredCategoryValue) in ((featuredBooks.children.allObjects as! [FIRDataSnapshot])).enumerated() {
                 let featuredTitle = featuredCategoryValue.key
+                // check cache (for refreshing etc)
                 guard !self.featuredCollectionCache.contains(featuredTitle) else {
                     print("'\(featuredTitle)' already exists!")
                     continue
@@ -39,6 +40,7 @@ class BrowseViewController: UIViewController {
                 if !self.featuredCollectionCache.contains("Spotlights") && !self.featuredCollectionCache.contains("Custom") {
                     self.featuredCollectionCache.append(featuredTitle)
                 }
+                // Start downloading process
                 if !featuredCategoryValue.hasChildren() {
                     self.getBooksFromSections(section: featuredCategoryValue.value as! String, sectionName: featuredTitle, featuredCategoryIndex: featuredCategoryIndex)
                 } else {
