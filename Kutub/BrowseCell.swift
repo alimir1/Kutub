@@ -16,17 +16,7 @@ class BrowseCell: UITableViewCell, UICollectionViewDelegate, UICollectionViewDat
     override func awakeFromNib() {
         super.awakeFromNib()
     }
-    
-//    var collectionViewOffset: CGFloat {
-//        get {
-//            return collectionView.contentOffset.x
-//        }
-//        
-//        set {
-//            collectionView.contentOffset.x = newValue
-//        }
-//    }
-    
+
     var books = [BrowsingBook]()
     
     func configureCell(title: String) {

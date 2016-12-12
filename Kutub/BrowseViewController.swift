@@ -14,9 +14,8 @@ class BrowseViewController: UIViewController {
     @IBOutlet weak var tableView: UITableView!
     var featuredBooksCollection = [FeaturedBooks]()
     var storedOffsets = [Int: CGFloat]()
-    var featuredCollectionCache = [String : Int]()
+    var featuredCollectionCache = [String]()
     var databaseReference: FIRDatabaseReference!
-    var handleValueForFeaturedBooksCategories: UInt!
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -28,42 +27,53 @@ class BrowseViewController: UIViewController {
         getDataFromFirebase()
     }
     
-    override func viewDidDisappear(_ animated: Bool) {
-        super.viewDidDisappear(animated)
-        databaseReference.removeObserver(withHandle: handleValueForFeaturedBooksCategories)
-    }
-    
     func getDataFromFirebase() {
-        handleValueForFeaturedBooksCategories = databaseReference.child("FeaturedBooksCategories").observe(.value, with: {
+        databaseReference.child("FeaturedBooksCategories").observeSingleEvent(of: .value, with: {
             (featuredBooks) in
-            for (featuredCategoryIndex, featuredBook) in ((featuredBooks.children.allObjects as! [FIRDataSnapshot])).enumerated() {
-                let featuredTitle = featuredBook.key
-                guard (self.featuredCollectionCache[featuredTitle] == nil) else {
-                    return
+            for (featuredCategoryIndex, featuredCategoryValue) in ((featuredBooks.children.allObjects as! [FIRDataSnapshot])).enumerated() {
+                let featuredTitle = featuredCategoryValue.key
+                guard !self.featuredCollectionCache.contains(featuredTitle) else {
+                    print("'\(featuredTitle)' already exists!")
+                    continue
                 }
-                self.featuredCollectionCache[featuredTitle] = featuredCategoryIndex
-                if !featuredBook.hasChildren() {
-                    // Example: [Ayatullah Murtadha Mutahhari : "Authors"]...
-                    let featuredReference = featuredBook.value as! String
-                    self.featuredBooksCollection.append(FeaturedBooks(name: featuredBook.key, books: [BrowsingBook]()))
-                    self.databaseReference.child("Kutub/\(featuredReference)/\(featuredTitle)/Books").queryLimited(toFirst: 25).observeSingleEvent(of: .value, with: {
-                        (bookUniqueKeys) in
-                        self.downloadBrowsingBooks(bookUniqueKeys: bookUniqueKeys, index: featuredCategoryIndex)
-                    })
+                if !self.featuredCollectionCache.contains("Spotlights") && !self.featuredCollectionCache.contains("Custom") {
+                    self.featuredCollectionCache.append(featuredTitle)
+                }
+                if !featuredCategoryValue.hasChildren() {
+                    self.getBooksFromSections(section: featuredCategoryValue.value as! String, sectionName: featuredTitle, featuredCategoryIndex: featuredCategoryIndex)
                 } else {
-                    // Example: [Custom Category : [book1, book2, book3 ...]]
-                    
+                    if featuredTitle == "Custom" {
+                        // Example: [Custom: [book1, book2, book3 ...]]
+                        for customFeaturedList in featuredCategoryValue.children.allObjects as! [FIRDataSnapshot] {
+                            let title = customFeaturedList.key
+                            let uniqueBookKeys = (customFeaturedList.value as! [String : Bool]).map {$0.key}
+                            self.featuredBooksCollection.append(FeaturedBooks(name: title, books: [BrowsingBook]()))
+                            self.downloadBrowsingBooks(bookUniqueKeys: uniqueBookKeys, index: featuredCategoryIndex)
+                        }
+                    } else if featuredTitle == "Spotlight" {
+                        // OR: [Spotlight: [Authors Spotlight : ["Ayatullah Mutahhari" : "true"], ["Ayatollah Tabatabai" : "true"], ...]]
+                    }
                 }
             }
         })
     }
     
-    func downloadBrowsingBooks(bookUniqueKeys: FIRDataSnapshot, index: Int) {
-        for uniqueBookKey in bookUniqueKeys.children.allObjects as! [FIRDataSnapshot] {
-            databaseReference.child("Kutub/Books/\(uniqueBookKey.key)").observeSingleEvent(of: .value, with: {
+    func getBooksFromSections(section: String, sectionName: String, featuredCategoryIndex: Int) {
+        // Example: [Ayatullah Murtadha Mutahhari : "Authors"]...
+        self.featuredBooksCollection.append(FeaturedBooks(name: sectionName, books: [BrowsingBook]()))
+        self.databaseReference.child("Kutub/\(section)/\(sectionName)/Books").queryLimited(toFirst: 25).observeSingleEvent(of: .value, with: {
+            (snapshot) in
+            let bookUniqueKeys = (snapshot.value as! [String : Bool]).map { $0.key }
+            self.downloadBrowsingBooks(bookUniqueKeys: bookUniqueKeys, index: featuredCategoryIndex)
+        })
+    }
+    
+    func downloadBrowsingBooks(bookUniqueKeys: [String], index: Int) {
+        for uniqueBookKey in bookUniqueKeys {
+            databaseReference.child("Kutub/Books/" + uniqueBookKey).observeSingleEvent(of: .value, with: {
                 (snapshot) in
                 let browsingBookValues = snapshot.value as! [String : AnyObject]
-                let browsingBook = self.createBrowsingBookObject(data: browsingBookValues, uniqueKey: uniqueBookKey.key)
+                let browsingBook = self.createBrowsingBookObject(data: browsingBookValues, uniqueKey: uniqueBookKey)
                 self.featuredBooksCollection[index].books.append(browsingBook)
                 self.tableView.reloadData()
             })
@@ -104,14 +114,8 @@ extension BrowseViewController: UITableViewDelegate, UITableViewDataSource {
     
     func tableView(_ tableView: UITableView, willDisplay cell: UITableViewCell, forRowAt indexPath: IndexPath) {
         guard let browseCell = cell as? BrowseCell else { return }
-//        browseCell.collectionViewOffset = storedOffsets[indexPath.row] ?? 0
         browseCell.configureCell(title: featuredBooksCollection[indexPath.row].name)
         browseCell.books = featuredBooksCollection[indexPath.row].books
-    }
-    
-    func tableView(_ tableView: UITableView, didEndDisplaying cell: UITableViewCell, forRowAt indexPath: IndexPath) {
-        guard let browseCell = cell as? BrowseCell else { return }
-//        storedOffsets[indexPath.row] = browseCell.collectionViewOffset
     }
 }
 
