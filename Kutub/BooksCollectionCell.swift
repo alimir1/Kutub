@@ -13,6 +13,10 @@ class BooksCollectionCell: UICollectionViewCell {
     @IBOutlet private weak var authors: UILabel!
     @IBOutlet private weak var bookCover: UIButton!
     
+    override func awakeFromNib() {
+        super.awakeFromNib()
+    }
+    
     func configureCell(title: String, authorNames: [String]? = nil, imageCover: UIImage? = nil) {
         var authorName = ""
         if let authors = authorNames {

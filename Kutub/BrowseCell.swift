@@ -53,20 +53,15 @@ class BrowseCell: UITableViewCell, UICollectionViewDelegate, UICollectionViewDat
     
     internal func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         if cellType == .books {
-            return collectionView.dequeueReusableCell(withReuseIdentifier: "booksCollectionCell", for: indexPath)
-        } else {
-            return collectionView.dequeueReusableCell(withReuseIdentifier: "spotlightsCollectionCell", for: indexPath)
-        }
-    }
-    
-    internal func collectionView(_ collectionView: UICollectionView, willDisplay cell: UICollectionViewCell, forItemAt indexPath: IndexPath) {
-        if let booksCollectionCell = cell as? BooksCollectionCell {
+            let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "booksCollectionCell", for: indexPath) as! BooksCollectionCell
             let bookTitle = books[indexPath.item].title
             let authors = books[indexPath.item].authors
-            booksCollectionCell.configureCell(title: bookTitle, authorNames: authors)
-        } else if let spotlightsCollectionCell = cell as? spotlightsCollectionViewCell {
-            spotlightsCollectionCell.configureCell(image: #imageLiteral(resourceName: "testImage"))
-            print("ishraq abidi")
+            cell.configureCell(title: bookTitle, authorNames: authors)
+            return cell
+        } else {
+            let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "spotlightsCollectionCell", for: indexPath) as! spotlightsCollectionViewCell
+            cell.configureCell(image: #imageLiteral(resourceName: "testImage"))
+            return cell
         }
     }
 }

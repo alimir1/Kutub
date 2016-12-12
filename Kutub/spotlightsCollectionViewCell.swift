@@ -11,7 +11,12 @@ import UIKit
 class spotlightsCollectionViewCell: UICollectionViewCell {
     @IBOutlet private weak var spotlightButtonImage: UIButton!
     
+    override func awakeFromNib() {
+        super.awakeFromNib()
+    }
+    
     func configureCell(image: UIImage) {
-        self.spotlightButtonImage.setImage(image, for: .normal)
+        spotlightButtonImage.imageView?.contentMode = .scaleAspectFill
+        spotlightButtonImage.setImage(image, for: .normal)
     }
 }
