@@ -27,7 +27,7 @@ class BrowseCell: UITableViewCell, UICollectionViewDelegate, UICollectionViewDat
             featuredCategoryName.setTitle(title, for: .normal)
             featuredCategoryName.isUserInteractionEnabled = false
         } else if type == .books {
-            featuredCategoryName.isUserInteractionEnabled = false
+            featuredCategoryName.isUserInteractionEnabled = true
             featuredCategoryName.setTitle(title + " >", for: .normal)
         }
         self.cellType = type
