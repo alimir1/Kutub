@@ -66,10 +66,9 @@ struct Featured {
     let name: String
     var typeOfItemsContained: FeaturedItem
     var books: [BrowsingBook]
-    var spotlights: [Spotlight]
+    var spotlights: [SpotLight]
 }
 
-struct Spotlight {
-    let uniqueID: String // eg. Author names, tag names, ...
-    var bookReferences: [String] // eg. [islamandhumanity23, kl3klnsd32, ...]
+struct SpotLight {
+    var uniqueBookKeys: [String] // contains unique book keys
 }

@@ -18,15 +18,21 @@ class BrowseCell: UITableViewCell, UICollectionViewDelegate, UICollectionViewDat
     }
 
     internal var books = [BrowsingBook]()
-    internal var spotlights = [Spotlight]()
+    internal var spotlights = [SpotLight]()
     internal var cellType: FeaturedItem!
     
-    func configureCell(of type: FeaturedItem, title: String, books: [BrowsingBook], spotlights: [Spotlight]) {
+    func configureCell(of type: FeaturedItem, title: String, books: [BrowsingBook], spotlightBookKeys: [SpotLight]) {
         setCollectionViewDataSourceDelegate(delegate: self, dataSource: self)
-        featuredCategoryName.setTitle(title + " >", for: .normal)
+        if type == .spotlights {
+            featuredCategoryName.setTitle(title, for: .normal)
+            featuredCategoryName.isUserInteractionEnabled = false
+        } else if type == .books {
+            featuredCategoryName.isUserInteractionEnabled = false
+            featuredCategoryName.setTitle(title + " >", for: .normal)
+        }
         self.cellType = type
         self.books = books
-        self.spotlights = spotlights
+        self.spotlights = spotlightBookKeys
     }
 
     internal func setCollectionViewDataSourceDelegate <D: UICollectionViewDelegate, S: UICollectionViewDataSource>(delegate: D, dataSource: S) {
@@ -58,10 +64,9 @@ class BrowseCell: UITableViewCell, UICollectionViewDelegate, UICollectionViewDat
             let bookTitle = books[indexPath.item].title
             let authors = books[indexPath.item].authors
             booksCollectionCell.configureCell(title: bookTitle, authorNames: authors)
-        } else {
-            if let spotlightsCollectionCell = cell as? spotlightsCollectionViewCell {
-                spotlightsCollectionCell.configureCell(image: #imageLiteral(resourceName: "testImage"))
-            }
+        } else if let spotlightsCollectionCell = cell as? spotlightsCollectionViewCell {
+            spotlightsCollectionCell.configureCell(image: #imageLiteral(resourceName: "testImage"))
+            print("ishraq abidi")
         }
     }
 }

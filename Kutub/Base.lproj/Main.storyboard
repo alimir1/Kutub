@@ -111,14 +111,14 @@
                                                             </connections>
                                                         </collectionViewCell>
                                                         <collectionViewCell opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" reuseIdentifier="spotlightsCollectionCell" id="HTn-ZO-W8c" customClass="spotlightsCollectionViewCell" customModule="Kutub" customModuleProvider="target">
-                                                            <rect key="frame" x="124" y="35" width="210" height="108"/>
+                                                            <rect key="frame" x="124" y="19" width="200" height="140"/>
                                                             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                                             <view key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center">
-                                                                <rect key="frame" x="0.0" y="0.0" width="210" height="108"/>
+                                                                <rect key="frame" x="0.0" y="0.0" width="200" height="140"/>
                                                                 <autoresizingMask key="autoresizingMask"/>
                                                                 <subviews>
                                                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="da9-om-WM6">
-                                                                        <rect key="frame" x="0.0" y="0.0" width="210" height="108"/>
+                                                                        <rect key="frame" x="0.0" y="0.0" width="200" height="140"/>
                                                                     </button>
                                                                 </subviews>
                                                             </view>
@@ -128,7 +128,7 @@
                                                                 <constraint firstItem="da9-om-WM6" firstAttribute="top" secondItem="HTn-ZO-W8c" secondAttribute="top" id="cQN-Ha-HRn"/>
                                                                 <constraint firstItem="da9-om-WM6" firstAttribute="leading" secondItem="HTn-ZO-W8c" secondAttribute="leading" id="dAG-QC-oYK"/>
                                                             </constraints>
-                                                            <size key="customSize" width="210" height="108"/>
+                                                            <size key="customSize" width="200" height="140"/>
                                                             <connections>
                                                                 <outlet property="spotlightButtonImage" destination="da9-om-WM6" id="Yem-QJ-gVG"/>
                                                             </connections>
