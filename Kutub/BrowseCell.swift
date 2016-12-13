@@ -8,7 +8,7 @@
 
 import UIKit
 
-class BrowseCell: UITableViewCell, UICollectionViewDelegate, UICollectionViewDataSource {
+class BrowseCell: UITableViewCell, UICollectionViewDelegate, UICollectionViewDataSource, UICollectionViewDelegateFlowLayout {
     
     @IBOutlet private weak var collectionView: UICollectionView!
     @IBOutlet private weak var featuredCategoryName: UIButton!
@@ -38,6 +38,10 @@ class BrowseCell: UITableViewCell, UICollectionViewDelegate, UICollectionViewDat
     internal func setCollectionViewDataSourceDelegate <D: UICollectionViewDelegate, S: UICollectionViewDataSource>(delegate: D, dataSource: S) {
         collectionView.delegate = delegate
         collectionView.dataSource = dataSource
+        let collectionViewFlowLayout = UICollectionViewFlowLayout()
+        let myCollectionView = UICollectionView(frame: self.collectionView.bounds, collectionViewLayout: collectionViewFlowLayout)
+        myCollectionView.delegate = self
+        myCollectionView.dataSource = self
         collectionView.reloadData()
     }
     
@@ -50,6 +54,7 @@ class BrowseCell: UITableViewCell, UICollectionViewDelegate, UICollectionViewDat
             return 0
         }
     }
+    
     
     internal func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         if cellType == .books {
@@ -64,4 +69,13 @@ class BrowseCell: UITableViewCell, UICollectionViewDelegate, UICollectionViewDat
             return cell
         }
     }
+    
+    func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
+        if cellType == .spotlights {
+            return CGSize(width: 175.0, height: 90.0)
+        } else {
+            return (collectionViewLayout as! UICollectionViewFlowLayout).itemSize
+        }
+    }
+    
 }

@@ -31,7 +31,7 @@ class BooksCollectionCell: UICollectionViewCell {
             bookCover.setImage(image, for: .normal)
             authors.text = authorName
         } else {
-            bookCover.imageView?.contentMode = .scaleToFill
+            bookCover.imageView?.contentMode = .scaleAspectFill
             configureLabelsUI(isImageContained: false)
             bookCover.setImage(#imageLiteral(resourceName: "bookCoverPlaceholder"), for: .normal)
             bookTitle.text = title
