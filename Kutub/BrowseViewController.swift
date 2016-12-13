@@ -32,16 +32,13 @@ class BrowseViewController: UIViewController {
             (featuredBooks) in
             for (featuredCategoryIndex, featuredCategoryValue) in ((featuredBooks.children.allObjects as! [FIRDataSnapshot])).enumerated() {
                 let featuredTitle = featuredCategoryValue.key
-                // check cache (for refreshing etc)
-                guard !self.featuredCollectionCache.contains(featuredTitle) else {
-                    print("'\(featuredTitle)' already exists!")
-                    continue
-                }
-                if !self.featuredCollectionCache.contains("Spotlights") && !self.featuredCollectionCache.contains("Custom") {
-                    self.featuredCollectionCache.append(featuredTitle)
-                }
                 // Start downloading process
                 if !featuredCategoryValue.hasChildren() {
+                    guard !self.featuredCollectionCache.contains(featuredTitle) else {
+                        print("'\(featuredTitle)' already exists!")
+                        continue
+                    }
+                    self.featuredCollectionCache.append(featuredTitle)
                     self.featuredCollection.append(Featured(name: featuredTitle, typeOfItemsContained: .books, books: [BrowsingBook](), spotlights: [SpotLight]()))
                     self.getBooksFromSections(section: featuredCategoryValue.value as! String, sectionName: featuredTitle, featuredCategoryIndex: featuredCategoryIndex, isSpotlight: false)
                 } else {
@@ -49,6 +46,11 @@ class BrowseViewController: UIViewController {
                         // Example: [Custom: [book1, book2, book3 ...]]
                         for customFeaturedList in featuredCategoryValue.children.allObjects as! [FIRDataSnapshot] {
                             let title = customFeaturedList.key
+                            guard !self.featuredCollectionCache.contains(title) else {
+                                print("'\(title)' already exists!")
+                                break
+                            }
+                            self.featuredCollectionCache.append(title)
                             let uniqueBookKeys = (customFeaturedList.value as! [String : Bool]).map {$0.key}
                             self.featuredCollection.append(Featured(name: title, typeOfItemsContained: .books, books: [BrowsingBook](), spotlights: [SpotLight]()))
                             self.downloadBrowsingBooks(bookUniqueKeys: uniqueBookKeys, index: featuredCategoryIndex)
@@ -57,6 +59,11 @@ class BrowseViewController: UIViewController {
                         // OR: [Spotlight: [Authors Spotlight : ["Ayatullah Mutahhari" : "true"], ["Ayatollah Tabatabai" : "true"], ...]]
                         for spotlight in featuredCategoryValue.children.allObjects as! [FIRDataSnapshot] {
                             let title = spotlight.key
+                            guard !self.featuredCollectionCache.contains(title) else {
+                                print("'\(title)' already exists!")
+                                break
+                            }
+                            self.featuredCollectionCache.append(title)
                             self.featuredCollection.append(Featured(name: title, typeOfItemsContained: .spotlights, books: [BrowsingBook](), spotlights: [SpotLight]()))
                             let spotlightItems = spotlight.value as! [String : String]
                             for (name, section) in spotlightItems {

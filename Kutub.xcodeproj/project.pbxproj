@@ -7,7 +7,6 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		49057F281DF904270058818B /* TestingAround.swift in Sources */ = {isa = PBXBuildFile; fileRef = 49057F271DF904270058818B /* TestingAround.swift */; };
 		49057F2A1DF9056E0058818B /* BrowseCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 49057F291DF9056E0058818B /* BrowseCell.swift */; };
 		49057F2C1DF911310058818B /* BooksCollectionCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 49057F2B1DF911310058818B /* BooksCollectionCell.swift */; };
 		4959C2821DF9CEEA00E8CB0D /* BannerPageViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4959C2811DF9CEEA00E8CB0D /* BannerPageViewController.swift */; };
@@ -32,7 +31,6 @@
 
 /* Begin PBXFileReference section */
 		27952BE55172861F9BE305FA /* Pods_Kutub.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Kutub.framework; sourceTree = BUILT_PRODUCTS_DIR; };
-		49057F271DF904270058818B /* TestingAround.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TestingAround.swift; sourceTree = "<group>"; };
 		49057F291DF9056E0058818B /* BrowseCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BrowseCell.swift; sourceTree = "<group>"; };
 		49057F2B1DF911310058818B /* BooksCollectionCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BooksCollectionCell.swift; sourceTree = "<group>"; };
 		4959C2811DF9CEEA00E8CB0D /* BannerPageViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BannerPageViewController.swift; sourceTree = "<group>"; };
@@ -139,7 +137,6 @@
 				498643571DFB8A3E00B1FDF8 /* BookListCell.swift */,
 				496950991DFA17A700CA66B6 /* Browse */,
 				49FD455D1DE39E3E007895A2 /* Main.storyboard */,
-				49057F271DF904270058818B /* TestingAround.swift */,
 				49FD45601DE39E3E007895A2 /* Assets.xcassets */,
 				49FD45621DE39E3E007895A2 /* LaunchScreen.storyboard */,
 				498E456A1DF5D9680081C9A5 /* GoogleService-Info.plist */,
@@ -291,7 +288,6 @@
 				49057F2A1DF9056E0058818B /* BrowseCell.swift in Sources */,
 				49057F2C1DF911310058818B /* BooksCollectionCell.swift in Sources */,
 				49CD5E1C1DF223B100BAE21F /* MyBooksViewController.swift in Sources */,
-				49057F281DF904270058818B /* TestingAround.swift in Sources */,
 				497980AA1DFF254D00E89740 /* spotlightsCollectionViewCell.swift in Sources */,
 				49CF7E9B1DFB1748006A789F /* BookListViewController.swift in Sources */,
 				49CD5E1F1DF2565F00BAE21F /* BookModels.swift in Sources */,
