@@ -30,7 +30,8 @@ class BrowseViewController: UIViewController {
     func getDataFromFirebase() {
         databaseReference.child("FeaturedBooksCategories").observeSingleEvent(of: .value, with: {
             (featuredBooks) in
-            for (featuredCategoryIndex, featuredCategoryValue) in ((featuredBooks.children.allObjects as! [FIRDataSnapshot])).enumerated() {
+            var featuredCategoryIndex = 0
+            for featuredCategoryValue in (featuredBooks.children.allObjects as! [FIRDataSnapshot]) {
                 let featuredTitle = featuredCategoryValue.key
                 // Start downloading process
                 if !featuredCategoryValue.hasChildren() {
@@ -41,6 +42,7 @@ class BrowseViewController: UIViewController {
                     self.featuredCollectionCache.append(featuredTitle)
                     self.featuredCollection.append(Featured(name: featuredTitle, typeOfItemsContained: .books, books: [BrowsingBook](), spotlights: [SpotLight]()))
                     self.getBooksFromSections(section: featuredCategoryValue.value as! String, sectionName: featuredTitle, featuredCategoryIndex: featuredCategoryIndex, isSpotlight: false)
+                    featuredCategoryIndex += 1
                 } else {
                     if featuredTitle == "Custom" {
                         // Example: [Custom: [book1, book2, book3 ...]]
@@ -54,6 +56,7 @@ class BrowseViewController: UIViewController {
                             let uniqueBookKeys = (customFeaturedList.value as! [String : Bool]).map {$0.key}
                             self.featuredCollection.append(Featured(name: title, typeOfItemsContained: .books, books: [BrowsingBook](), spotlights: [SpotLight]()))
                             self.downloadBrowsingBooks(bookUniqueKeys: uniqueBookKeys, index: featuredCategoryIndex)
+                            featuredCategoryIndex += 1
                         }
                     } else if featuredTitle == "Spotlights" {
                         // OR: [Spotlight: [Authors Spotlight : ["Ayatullah Mutahhari" : "true"], ["Ayatollah Tabatabai" : "true"], ...]]
@@ -69,6 +72,7 @@ class BrowseViewController: UIViewController {
                             for (name, section) in spotlightItems {
                                 self.getBooksFromSections(section: section, sectionName: name, featuredCategoryIndex: featuredCategoryIndex, isSpotlight: true)
                             }
+                            featuredCategoryIndex += 1
                         }
                     }
                 }
