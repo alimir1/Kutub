@@ -16,6 +16,8 @@ class BrowseViewController: UIViewController {
     var storedOffsets = [Int: CGFloat]()
     var featuredCollectionCache = [String]()
     var databaseReference: FIRDatabaseReference!
+    var FIRHandler = UInt()
+    
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -27,8 +29,13 @@ class BrowseViewController: UIViewController {
         getDataFromFirebase()
     }
     
+    override func viewDidDisappear(_ animated: Bool) {
+        super.viewDidDisappear(animated)
+        databaseReference.removeObserver(withHandle: FIRHandler)
+    }
+    
     func getDataFromFirebase() {
-        databaseReference.child("FeaturedBooksCategories").observeSingleEvent(of: .value, with: {
+        FIRHandler = databaseReference.child("FeaturedBooksCategories").observe(.value, with: {
             (featuredBooks) in
             var featuredCategoryIndex = 0
             for featuredCategoryValue in (featuredBooks.children.allObjects as! [FIRDataSnapshot]) {
