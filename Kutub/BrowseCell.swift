@@ -8,7 +8,7 @@
 
 import UIKit
 
-class BrowseCell: UITableViewCell, UICollectionViewDelegate, UICollectionViewDataSource, UICollectionViewDelegateFlowLayout {
+class BrowseCell: UITableViewCell, UICollectionViewDataSource, UICollectionViewDelegate, UICollectionViewDelegateFlowLayout {
     
     @IBOutlet private weak var collectionView: UICollectionView!
     @IBOutlet private weak var featuredCategoryName: UIButton!
@@ -19,23 +19,21 @@ class BrowseCell: UITableViewCell, UICollectionViewDelegate, UICollectionViewDat
 
     internal var books = [BrowsingBook]()
     internal var spotlights = [SpotLight]()
-    internal var cellType: FeaturedItem!
+    internal var cellType: FeaturedItemTypes = .reference
     
-    func configureCell(of type: FeaturedItem, title: String, books: [BrowsingBook], spotlightBookKeys: [SpotLight]) {
+    func configureCell(of type: FeaturedItemTypes, title: String, books: [BrowsingBook], spotlightBookKeys: [SpotLight]) {
         setCollectionViewDataSourceDelegate(delegate: self, dataSource: self)
         if type == .spotlights {
             featuredCategoryName.setTitle(title, for: .normal)
             featuredCategoryName.isUserInteractionEnabled = false
-        } else if type == .books {
+        } else if type == .reference {
             featuredCategoryName.isUserInteractionEnabled = true
             featuredCategoryName.setTitle(title + " >", for: .normal)
         }
-        self.cellType = type
         self.books = books
-        self.spotlights = spotlightBookKeys
     }
 
-    internal func setCollectionViewDataSourceDelegate <D: UICollectionViewDelegate, S: UICollectionViewDataSource>(delegate: D, dataSource: S) {
+    func setCollectionViewDataSourceDelegate <D: UICollectionViewDelegate, S: UICollectionViewDataSource>(delegate: D, dataSource: S) {
         collectionView.delegate = delegate
         collectionView.dataSource = dataSource
         let collectionViewFlowLayout = UICollectionViewFlowLayout()
@@ -46,7 +44,7 @@ class BrowseCell: UITableViewCell, UICollectionViewDelegate, UICollectionViewDat
     }
     
     internal func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-        if cellType == .books {
+        if cellType == .reference {
             return books.count
         } else if cellType == .spotlights {
             return spotlights.count
@@ -57,7 +55,7 @@ class BrowseCell: UITableViewCell, UICollectionViewDelegate, UICollectionViewDat
     
     
     internal func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
-        if cellType == .books {
+        if cellType == .reference {
             let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "booksCollectionCell", for: indexPath) as! BooksCollectionCell
             let bookTitle = books[indexPath.item].title
             let authors = books[indexPath.item].authors
@@ -70,12 +68,11 @@ class BrowseCell: UITableViewCell, UICollectionViewDelegate, UICollectionViewDat
         }
     }
     
-    func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
+    internal func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
         if cellType == .spotlights {
             return CGSize(width: 175.0, height: 90.0)
         } else {
             return (collectionViewLayout as! UICollectionViewFlowLayout).itemSize
         }
     }
-    
 }

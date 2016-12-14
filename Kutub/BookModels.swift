@@ -58,17 +58,30 @@ class DownloadedBook: Object, BookMetadata {
 }
 
 
-enum FeaturedItem {
-    case books, spotlights
+enum FeaturedItemTypes {
+    case reference, custom, spotlights
+}
+
+struct BookReference {
+    let section: String
+    let sectionName: String
+}
+
+struct Reference {
+    let reference: BookReference
+    var books: [BrowsingBook]
 }
 
 struct Featured {
     let name: String
-    var typeOfItemsContained: FeaturedItem
-    var books: [BrowsingBook]
-    var spotlights: [SpotLight]
+    let type: FeaturedItemTypes
+}
+
+
+struct Custom {
+    var booksIDs: [String]
 }
 
 struct SpotLight {
-    var uniqueBookKeys: [String] // contains unique book keys
+    var spotLightItems: [BookReference]
 }
