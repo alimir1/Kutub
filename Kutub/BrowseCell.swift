@@ -23,14 +23,15 @@ class BrowseCell: UITableViewCell, UICollectionViewDataSource, UICollectionViewD
     
     func configureCell(of type: FeaturedItemTypes, title: String, books: [BrowsingBook], spotlightBookKeys: [SpotLight]) {
         setCollectionViewDataSourceDelegate(delegate: self, dataSource: self)
-        if type == .spotlights {
-            featuredCategoryName.setTitle(title, for: .normal)
-            featuredCategoryName.isUserInteractionEnabled = false
-        } else if type == .reference {
+        self.books = books
+        switch type {
+        case .reference, .custom:
             featuredCategoryName.isUserInteractionEnabled = true
             featuredCategoryName.setTitle(title + " >", for: .normal)
+        case .spotlights:
+            featuredCategoryName.setTitle(title, for: .normal)
+            featuredCategoryName.isUserInteractionEnabled = false
         }
-        self.books = books
     }
 
     func setCollectionViewDataSourceDelegate <D: UICollectionViewDelegate, S: UICollectionViewDataSource>(delegate: D, dataSource: S) {
@@ -52,7 +53,6 @@ class BrowseCell: UITableViewCell, UICollectionViewDataSource, UICollectionViewD
             return 0
         }
     }
-    
     
     internal func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         if cellType == .reference {

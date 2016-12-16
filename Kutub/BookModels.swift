@@ -67,21 +67,32 @@ struct BookReference {
     let sectionName: String
 }
 
-struct Reference {
-    let reference: BookReference
-    var books: [BrowsingBook]
-}
-
-struct Featured {
+struct CompleteCollection {
     let name: String
     let type: FeaturedItemTypes
+    var reference: Reference?
+    var custom: Custom?
+    
+    init(name: String, type: FeaturedItemTypes, reference: Reference? = nil, custom: Custom? = nil) {
+        self.name = name
+        self.type = type
+        self.custom = custom
+        self.reference = reference
+    }
 }
 
+struct Reference {
+    let reference: BookReference
+    var books = [BrowsingBook]()
+    init(reference: BookReference) {
+        self.reference = reference
+    }
+}
 
 struct Custom {
-    var booksIDs: [String]
+    var books = [BrowsingBook]()
 }
 
 struct SpotLight {
-    var spotLightItems: [BookReference]
+    var spotLightItems = [BookReference]()
 }
