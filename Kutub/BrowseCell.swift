@@ -81,7 +81,7 @@ class BrowseCell: UITableViewCell, UICollectionViewDataSource, UICollectionViewD
     internal func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
         guard let cellType = cellType else { return CGSize(width: 0, height: 0) }
         if cellType == .spotlight {
-            return CGSize(width: 175.0, height: 90.0)
+            return CGSize(width: 180.0, height: 90.0)
         } else {
             return (collectionViewLayout as! UICollectionViewFlowLayout).itemSize
         }
