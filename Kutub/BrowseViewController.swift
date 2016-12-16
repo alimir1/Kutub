@@ -38,27 +38,24 @@ class BrowseViewController: UIViewController {
                     collections.append(collection)
                     self.getBooks(from: featuredCategoryValue.value as! String, sectionName: featuredTitle, index: index, type: .reference)
                     index += 1
-                } else {
-                    if featuredTitle == "Customs" {
+                } else if featuredTitle == "Customs" {
                         // Example: [Customs: ["ishraq custom" : [book1, book2, book3 ...]]]
-                        for customFeaturedList in featuredCategoryValue.children.allObjects as! [FIRDataSnapshot] {
+                    for customFeaturedList in featuredCategoryValue.children.allObjects as! [FIRDataSnapshot] {
                             let title = customFeaturedList.key
                             let uniqueBookKeys = (customFeaturedList.value as! [String : Bool]).map {$0.key}
                             let collection = CompleteCollection(name: title, type: .custom, custom: Custom())
                             collections.append(collection)
                             self.downloadBrowsingBooks(title: title, bookUniqueKeys: uniqueBookKeys, index: index, type: .custom)
                             index += 1
-                        }
-//                    } else if featuredTitle == "Spotlights" {
-                        // OR: [Spotlight: [Authors Spotlight : ["Ayatullah Mutahhari" : "true"], ["Ayatollah Tabatabai" : "true"], ...]]
-//                        for spotlight in featuredCategoryValue.children.allObjects as! [FIRDataSnapshot] {
-//                            let title = spotlight.key
-//                            collection.append(Featured(name: title, type: .spotlights))
-//                            let spotlightItems = spotlight.value as! [String : String]
-//                            for (name, section) in spotlightItems {
-//                                self.getBooksFromSections(section: section, sectionName: name, featuredCategoryIndex: featuredCategoryIndex, isSpotlight: true)
-//                            }
-//                        }
+                    }
+                } else if featuredTitle == "Spotlights" {
+                    // Example. [Spotlights: [Authors Spotlight : ["Ayatullah Mutahhari" : "true"], ["Ayatollah Tabatabai" : "true"], ...]]
+                        for spotlight in featuredCategoryValue.children.allObjects as! [FIRDataSnapshot] {
+                            let title = spotlight.key
+                            let spotlights = (spotlight.value as! [String : String]).map {BookReference(section: $1, sectionName: $0)}
+                            let collection = CompleteCollection(name: title, type: .spotlight, spotlight: SpotLight(spotlights: spotlights))
+                            collections.append(collection)
+                            index += 1
                     }
                 }
             }
@@ -72,11 +69,7 @@ class BrowseViewController: UIViewController {
         self.databaseReference.child("Kutub/\(section)/\(sectionName)/Books").queryLimited(toFirst: 25).observeSingleEvent(of: .value, with: {
             (snapshot) in
             let bookUniqueKeys = (snapshot.value as! [String : Bool]).map { $0.key }
-            switch type {
-            case .reference:
-                self.downloadBrowsingBooks(title: sectionName, bookUniqueKeys: bookUniqueKeys, index: index, type: type)
-            default: return
-            }
+            self.downloadBrowsingBooks(title: sectionName, bookUniqueKeys: bookUniqueKeys, index: index, type: type)
         })
     }
     
@@ -140,10 +133,12 @@ extension BrowseViewController: UITableViewDelegate, UITableViewDataSource {
         guard let browseCell = cell as? BrowseCell else { return }
         switch featuredCollection[indexPath.row].type {
         case .reference:
-            browseCell.configureCell(of: featuredCollection[indexPath.row].type, title: featuredCollection[indexPath.row].name, books: featuredCollection[indexPath.row].reference!.books, spotlightBookKeys: [SpotLight]())
+            browseCell.configureCell(of: featuredCollection[indexPath.row].type, title: featuredCollection[indexPath.row].name, books: featuredCollection[indexPath.row].reference!.books, spotlights: [BookReference]())
         case .custom:
-            browseCell.configureCell(of: featuredCollection[indexPath.row].type, title: featuredCollection[indexPath.row].name, books: featuredCollection[indexPath.row].custom!.books, spotlightBookKeys: [SpotLight]())
-        default: return
+            browseCell.configureCell(of: featuredCollection[indexPath.row].type, title: featuredCollection[indexPath.row].name, books: featuredCollection[indexPath.row].custom!.books, spotlights: [BookReference]())
+        case .spotlight:
+            let spotlights = featuredCollection[indexPath.row].spotlight!.spotlights
+            browseCell.configureCell(of: featuredCollection[indexPath.row].type, title: featuredCollection[indexPath.row].name, books: [BrowsingBook](), spotlights: spotlights)
         }
     }
 }

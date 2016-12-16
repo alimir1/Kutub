@@ -59,7 +59,7 @@ class DownloadedBook: Object, BookMetadata {
 
 
 enum FeaturedItemTypes {
-    case reference, custom, spotlights
+    case reference, custom, spotlight
 }
 
 struct BookReference {
@@ -72,12 +72,14 @@ struct CompleteCollection {
     let type: FeaturedItemTypes
     var reference: Reference?
     var custom: Custom?
+    var spotlight: SpotLight?
     
-    init(name: String, type: FeaturedItemTypes, reference: Reference? = nil, custom: Custom? = nil) {
+    init(name: String, type: FeaturedItemTypes, reference: Reference? = nil, custom: Custom? = nil, spotlight: SpotLight? = nil) {
         self.name = name
         self.type = type
         self.custom = custom
         self.reference = reference
+        self.spotlight = spotlight
     }
 }
 
@@ -94,5 +96,5 @@ struct Custom {
 }
 
 struct SpotLight {
-    var spotLightItems = [BookReference]()
+    var spotlights: [BookReference]
 }

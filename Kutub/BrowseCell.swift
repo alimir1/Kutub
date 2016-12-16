@@ -18,17 +18,19 @@ class BrowseCell: UITableViewCell, UICollectionViewDataSource, UICollectionViewD
     }
 
     internal var books = [BrowsingBook]()
-    internal var spotlights = [SpotLight]()
-    internal var cellType: FeaturedItemTypes = .reference
+    internal var spotlights = [BookReference]()
+    internal var cellType: FeaturedItemTypes?
     
-    func configureCell(of type: FeaturedItemTypes, title: String, books: [BrowsingBook], spotlightBookKeys: [SpotLight]) {
+    func configureCell(of type: FeaturedItemTypes, title: String, books: [BrowsingBook], spotlights: [BookReference]) {
         setCollectionViewDataSourceDelegate(delegate: self, dataSource: self)
         self.books = books
+        self.spotlights = spotlights
+        self.cellType = type
         switch type {
         case .reference, .custom:
             featuredCategoryName.isUserInteractionEnabled = true
             featuredCategoryName.setTitle(title + " >", for: .normal)
-        case .spotlights:
+        case .spotlight:
             featuredCategoryName.setTitle(title, for: .normal)
             featuredCategoryName.isUserInteractionEnabled = false
         }
@@ -45,17 +47,25 @@ class BrowseCell: UITableViewCell, UICollectionViewDataSource, UICollectionViewD
     }
     
     internal func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-        if cellType == .reference {
-            return books.count
-        } else if cellType == .spotlights {
-            return spotlights.count
+        if let cellType = cellType {
+            switch cellType {
+            case .reference, .custom:
+                return books.count
+            case .spotlight:
+                return spotlights.count
+            }
         } else {
             return 0
         }
     }
     
     internal func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
-        if cellType == .reference {
+        
+        guard let cellType = cellType else {
+            return collectionView.dequeueReusableCell(withReuseIdentifier: "booksCollectionCell", for: indexPath) as! BooksCollectionCell
+        }
+        
+        if cellType == .reference || cellType == .custom {
             let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "booksCollectionCell", for: indexPath) as! BooksCollectionCell
             let bookTitle = books[indexPath.item].title
             let authors = books[indexPath.item].authors
@@ -69,7 +79,8 @@ class BrowseCell: UITableViewCell, UICollectionViewDataSource, UICollectionViewD
     }
     
     internal func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
-        if cellType == .spotlights {
+        guard let cellType = cellType else { return CGSize(width: 0, height: 0) }
+        if cellType == .spotlight {
             return CGSize(width: 175.0, height: 90.0)
         } else {
             return (collectionViewLayout as! UICollectionViewFlowLayout).itemSize
