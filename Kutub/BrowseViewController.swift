@@ -36,7 +36,7 @@ class BrowseViewController: UIViewController {
                     let bookRef = BookReference(section: featuredCategoryValue.value as! String, sectionName: featuredTitle)
                     let collection = CompleteCollection(name: featuredTitle, type: .reference, reference: Reference(reference: bookRef))
                     collections.append(collection)
-                    self.getBooks(from: featuredCategoryValue.value as! String, sectionName: featuredTitle, index: index, type: .reference)
+                    self.getBooks(from: featuredCategoryValue.value as! String, sectionName: featuredTitle, index: index)
                     index += 1
                 } else if featuredTitle == "Customs" {
                         // Example: [Customs: ["ishraq custom" : [book1, book2, book3 ...]]]
@@ -45,7 +45,7 @@ class BrowseViewController: UIViewController {
                             let uniqueBookKeys = (customFeaturedList.value as! [String : Bool]).map {$0.key}
                             let collection = CompleteCollection(name: title, type: .custom, custom: Custom())
                             collections.append(collection)
-                            self.downloadBrowsingBooks(title: title, bookUniqueKeys: uniqueBookKeys, index: index, type: .custom)
+                            self.downloadBrowsingBooks(title: title, bookUniqueKeys: uniqueBookKeys, index: index)
                             index += 1
                     }
                 } else if featuredTitle == "Spotlights" {
@@ -64,16 +64,16 @@ class BrowseViewController: UIViewController {
         })
     }
     
-    func getBooks(from section: String, sectionName: String, index: Int, type: FeaturedItemTypes) {
+    func getBooks(from section: String, sectionName: String, index: Int) {
         // Example: [Ayatullah Murtadha Mutahhari : "Authors"]...
         self.databaseReference.child("Kutub/\(section)/\(sectionName)/Books").queryLimited(toFirst: 25).observeSingleEvent(of: .value, with: {
             (snapshot) in
             let bookUniqueKeys = (snapshot.value as! [String : Bool]).map { $0.key }
-            self.downloadBrowsingBooks(title: sectionName, bookUniqueKeys: bookUniqueKeys, index: index, type: type)
+            self.downloadBrowsingBooks(title: sectionName, bookUniqueKeys: bookUniqueKeys, index: index)
         })
     }
     
-    func downloadBrowsingBooks(title: String, bookUniqueKeys: [String], index: Int, type: FeaturedItemTypes) {
+    func downloadBrowsingBooks(title: String, bookUniqueKeys: [String], index: Int) {
         databaseReference.child("Kutub/Books/").observeSingleEvent(of: .value, with: {
             (snapshot) in
             var books = [BrowsingBook]()
@@ -84,17 +84,10 @@ class BrowseViewController: UIViewController {
                     books.append(browsingBook)
                 }
             }
-            switch type {
-            case .reference:
-                self.featuredCollection[index].reference?.books = books
-                self.tableView.reloadData()
-                self.refreshControl.endRefreshing()
-            case .custom: ()
-                self.featuredCollection[index].custom!.books = books
-                self.tableView.reloadData()
-                self.refreshControl.endRefreshing()
-            default: return
-            }
+            self.featuredCollection[index].custom?.books = books
+            self.featuredCollection[index].reference?.books = books
+            self.tableView.reloadData()
+            self.refreshControl.endRefreshing()
         })
     }
     
