@@ -13,6 +13,8 @@ class spotlightsCollectionViewCell: UICollectionViewCell {
     
     override func awakeFromNib() {
         super.awakeFromNib()
+        spotlightButtonImage.imageView?.layer.cornerRadius = 10
+        spotlightButtonImage.imageView?.clipsToBounds = true
     }
     
     func configureCell(image: UIImage) {

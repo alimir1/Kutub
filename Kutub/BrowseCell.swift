@@ -76,7 +76,7 @@ class BrowseCell: UITableViewCell, UICollectionViewDataSource, UICollectionViewD
             cell.configureCell(image: #imageLiteral(resourceName: "testImage"))
             return cell
         }
-    }
+    }    
     
     internal func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
         guard let cellType = cellType else { return CGSize(width: 0, height: 0) }
